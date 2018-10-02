@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
+import axios from "axios";
 
 class MoneyForm extends React.Component {
   constructor() {
@@ -23,16 +24,23 @@ class MoneyForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit(event) {
-    event.preventDefault();
-  }
+  handleSubmit = e => {
+    e.preventDefault();
+    // get our form data out of state
+    const { name, whitdrawal, reason } = this.state;
+
+    axios.post("/", { name, whitdrawal, reason }).then(result => {
+      console.log(this.name);
+      console.log(name);
+    });
+  };
 
   render() {
     const { name, whitdrawal, reason } = this.state;
     return (
       <React.Fragment>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
-        <form onSubmit={this.handleSubmit} action="/api/balance" method="POST">
+        <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
           <br />{" "}
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
           <TextField
@@ -80,7 +88,11 @@ class MoneyForm extends React.Component {
             Penger
           </Button>
         </form>
-        <p>You wrote: </p>
+        <p>
+          Name: {this.state.name} <br />
+          Witdhdrawal amount: {this.state.whitdrawal} <br />
+          Reason: {this.state.reason}
+        </p>
       </React.Fragment>
     );
   }
