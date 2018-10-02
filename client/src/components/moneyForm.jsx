@@ -1,10 +1,19 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 class MoneyForm extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {value: ''};
+      this.state = {
+          atmUser: {
+              name: '',
+              balance: '',
+              reason: '', 
+          }
+      };
   
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,19 +24,25 @@ class MoneyForm extends React.Component {
     }
   
     handleSubmit(event) {
-      alert('A name was submitted: ' + this.state.value);
-      event.preventDefault();
+       event.preventDefault();
     }
   
     render() {
       return (
+        <React.Fragment>
+        <CssBaseline /> { /*https://material-ui.com/style/css-baseline */ }
         <form onSubmit={this.handleSubmit}>
           <label>
-            Name:
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" />
+           Withdraw money:
+            <input type="number" value={this.state.value} onChange={this.handleChange} />
+          </label><br></br>
+          <Button type="submit" variant="contained" color="primary" className="Knapp">
+            Penger
+          </Button>
         </form>
+        <p>You wrote: {this.state.value}</p>
+        </React.Fragment>
+
       );
     }
   }
