@@ -15,5 +15,5 @@ From root folder run `yarn`
 From client folder run `yarn` 
 
 ## Notes 
-If getting `"Node.JS: Getting error : [nodemon] Internal watch failed: watch ENOSPC" in Linux (possibly MacOS but not tested)` run 
+If getting `"Node.JS: Getting error : [nodemon] Internal watch failed: watch ENOSPC"` in Linux (possibly MacOS but not tested) run 
 `echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p` from the terminal.
