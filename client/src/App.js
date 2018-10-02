@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import './App.css';
-import './components/moneyForm'
-import MoneyForm from './components/moneyForm';
+import React, { Component } from "react";
+import "./App.css";
+import "./components/moneyForm";
+import "typeface-roboto";
+import MoneyForm from "./components/moneyForm";
 
 class App extends Component {
   state = {
-    response: ''
+    response: ""
   };
 
   componentDidMount() {
@@ -15,7 +16,7 @@ class App extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch('/api/hello');
+    const response = await fetch("/api/hello");
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
@@ -27,8 +28,8 @@ class App extends Component {
     return (
       <div className="App">
         <p className="App-intro">{this.state.response}</p>
-        <MoneyForm/>
-              </div>
+        <MoneyForm />
+      </div>
     );
   }
 }
