@@ -5,21 +5,23 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 
 class MoneyForm extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       name: "",
       whitdrawal: "",
       reason: ""
     };
-
-    this.handleChange = this.handleChange.bind(this);
+    this.handleEvent = this.handleEvent.bind(this);
+    {
+      /* check if can be removed */
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
+  handleEvent = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -31,24 +33,42 @@ class MoneyForm extends React.Component {
       <React.Fragment>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} action="/api/balance" method="POST">
-          <label>
-            Withdraw money:
-            <input
-              type="number"
-              value={whitdrawal}
-              onChange={this.handleChange}
-            />
-          </label>
-          <br /> {/* Bytt ut med CSS block elementer eller noe slikt */}
+          <br />{" "}
+          {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
           <TextField
             required
             id="standard-required"
-            label="Required"
-            defaultValue="Skriv navn"
+            label="Navn"
+            defaultValue="Full name"
             className="tekstfelt"
             margin="normal"
             value={name}
-            onChange={this.handleChange}
+            name="name"
+            onChange={e => this.handleEvent(e)}
+          />
+          <br />
+          <TextField
+            required
+            id="standard-required"
+            label="Witdhdrawal amount"
+            defaultValue=""
+            className="tekstfelt"
+            margin="normal"
+            value={whitdrawal}
+            name="whitdrawal"
+            onChange={e => this.handleEvent(e)}
+          />
+          <br />
+          <TextField
+            required
+            id="standard-required"
+            label="Reason"
+            defaultValue=""
+            className="tekstfelt"
+            margin="normal"
+            value={reason}
+            name="reason"
+            onChange={e => this.handleEvent(e)}
           />
           <br />
           <Button
@@ -60,7 +80,7 @@ class MoneyForm extends React.Component {
             Penger
           </Button>
         </form>
-        <p>You wrote: {this.state.value}</p>
+        <p>You wrote: </p>
       </React.Fragment>
     );
   }
