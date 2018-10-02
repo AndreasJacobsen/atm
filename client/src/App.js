@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import './components/moneyForm'
+import MoneyForm from './components/moneyForm';
 
 class App extends Component {
   state = {
@@ -25,7 +27,8 @@ class App extends Component {
     return (
       <div className="App">
         <p className="App-intro">{this.state.response}</p>
-      </div>
+        <MoneyForm/>
+              </div>
     );
   }
 }
