@@ -2,13 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Creates the needed schema
-var whitdrawalSchema = new Schema({
+let whitdrawalSchema = new Schema({
   name: { type: String, required: true },
   whitdrawal: { type: Number, required: true },
   reason: { type: String, required: true },
   created_at: Date,
   updated_at: Date
 });
+// Inserts
 whitdrawalSchema.pre("save", function(next) {
   const currentDate = new Date();
   this.updated_at = currentDate;
