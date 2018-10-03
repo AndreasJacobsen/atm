@@ -29,7 +29,7 @@ class MoneyForm extends React.Component {
     // get our form data out of state
     const { name, whitdrawal, reason } = this.state;
 
-    axios.post("/", { name, whitdrawal, reason }).then(result => {
+    axios.post("/api/formdata", { name, whitdrawal, reason }).then(result => {
       console.log(this.name);
       console.log(name);
     });
@@ -47,7 +47,6 @@ class MoneyForm extends React.Component {
             required
             id="standard-required"
             label="Navn"
-            defaultValue="Full name"
             className="tekstfelt"
             margin="normal"
             value={name}
@@ -59,7 +58,6 @@ class MoneyForm extends React.Component {
             required
             id="standard-required"
             label="Witdhdrawal amount"
-            defaultValue=""
             className="tekstfelt"
             margin="normal"
             value={whitdrawal}
@@ -71,7 +69,6 @@ class MoneyForm extends React.Component {
             required
             id="standard-required"
             label="Reason"
-            defaultValue=""
             className="tekstfelt"
             margin="normal"
             value={reason}
