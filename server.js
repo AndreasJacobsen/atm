@@ -3,39 +3,41 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
 const port = process.env.PORT || 5000;
+const AtmUser = require("./models/atmuser");
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/atm");
-
-const whitdrawalSchema = new mongoose.Schema({
-  name: String,
-  whitdrawal: Number,
-  reason: String
-});
-var AtmUser = mongoose.model("AtmUser", whitdrawalSchema);
 
 app.use(
   bodyParser.urlencoded({
     extended: true
   })
 );
+const newAtmUser = AtmUser({
+  name: "Kodetest",
+  whitdrawal: "434",
+  reason: "Kodetest"
+});
 
 app.use(bodyParser.json());
-app.post("/api/formdata", function(req, res) {
-  const whitdrawalData = new AtmUser(req.body);
-  whitdrawalData
-    .save()
-    .then(item => {
-      res.send("item saved to database");
-    })
-    .catch(err => {
-      res.status(400).send("unable to save to database");
-    });
+app.get("/api/formdata", function(req, res) {
+  const name1 = req.body.name;
+  const whitdrawal1 = req.body.whitdrawal;
+  const reason1 = req.body.reason;
+  console.log("Hentet data", name1, whitdrawal1, reason1);
+  AtmUser.find({}, function(err, users) {
+    if (err) throw err;
 
-  const name = req.body.name;
-  const whitdrawal = req.body.whitdrawal;
-  const reason = req.body.reason;
-  console.log("Hentet data", name, whitdrawal, reason);
+    // object of all the users
+    console.log(users);
+    res.send({ users });
+  });
+  // save the user
+  newAtmUser.save(function(err) {
+    if (err) throw err;
+
+    console.log("User successfully updated!");
+  });
 });
 
 app.get("/api/hello", (req, res) => {
