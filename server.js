@@ -13,24 +13,13 @@ app.use(
     extended: true
   })
 );
-const newAtmUser = AtmUser({
-  name: "Kodetest",
-  whitdrawal: "434",
-  reason: "Kodetest"
-});
 
 app.use(bodyParser.json());
-app.get("/api/formdata", function(req, res) {
-  const name1 = req.body.name;
-  const whitdrawal1 = req.body.whitdrawal;
-  const reason1 = req.body.reason;
-  console.log("Hentet data", name1, whitdrawal1, reason1);
-  AtmUser.find({}, function(err, users) {
-    if (err) throw err;
-
-    // object of all the users
-    console.log(users);
-    res.send({ users });
+app.post("/api/formdata", function(req, res) {
+  const newAtmUser = AtmUser({
+    name: req.body.name,
+    whitdrawal: req.body.whitdrawal,
+    reason: req.body.reason
   });
   // save the user
   newAtmUser.save(function(err) {
@@ -40,6 +29,15 @@ app.get("/api/formdata", function(req, res) {
   });
 });
 
+app.get("/api/showFormData", function(req, res) {
+  AtmUser.find({}, function(err, users) {
+    if (err) throw err;
+
+    // object of all the users
+    console.log(users);
+    res.send({ users });
+  });
+});
 app.get("/api/hello", (req, res) => {
   res.send({ express: "Denne meldingen kommer fra Express.js backend" });
 });

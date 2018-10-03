@@ -41,7 +41,7 @@ class MoneyForm extends React.Component {
       <React.Fragment>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
-          <br />{" "}
+          <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
           <TextField
             required
