@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 // Creates the needed schema
@@ -12,13 +13,13 @@ let whitdrawalSchema = new Schema({
   bankNumber: Number,
   cards: [
     {
-      type: String, //Visa eller Mastercard
+      type: String, // Visa eller Mastercard
       cardNumber: Number,
       cvc: Number,
       expirationDate: Date,
       pin: Number,
       status: Boolean,
-      dailyLimit: "9900"
+      dailyLimit: '9900'
     }
   ],
   whitdrawal: [
@@ -30,7 +31,7 @@ let whitdrawalSchema = new Schema({
   ]
 });
 // Inserts
-whitdrawalSchema.pre("save", function(next) {
+whitdrawalSchema.pre('save', function(next) {
   const currentDate = new Date();
   this.updated_at = currentDate;
   this.date = currentDate;
@@ -41,7 +42,7 @@ whitdrawalSchema.pre("save", function(next) {
 });
 
 // Creates model for schema
-const AtmUser = mongoose.model("AtmUser", whitdrawalSchema);
+const AtmUser = mongoose.model('AtmUser', whitdrawalSchema);
 
 // Export so it is available for the rest of the application
 module.exports = AtmUser;
