@@ -1,25 +1,25 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import App from "../App";
-import AllUsers from "./allUsers";
+import MoneyForm from "./moneyForm";
+import logIn from "./logIn";
 
-const UrlRouter = () => (
+const BasicExample = () => (
   <Router>
     <div>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Log in</Link>
         </li>
         <li>
-          <Link to="/allUsers">All users</Link>
+          <Link to="/moneyform">Money form</Link>
         </li>
       </ul>
 
       <hr />
 
-      <Route exact path="/" component={App} />
-      <Route path="/allUsers" component={AllUsers} />
+      <Route exact path="/" component={logIn} />
+      <Route path="/moneyform" component={MoneyForm} />
     </div>
   </Router>
 );
-export default UrlRouter;
+export default BasicExample;

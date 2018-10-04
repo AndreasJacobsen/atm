@@ -4,6 +4,7 @@ import "./components/moneyForm";
 import "typeface-roboto";
 import MoneyForm from "./components/moneyForm";
 import UrlRouter from "./components/router";
+import BasicExample from "./components/router";
 
 class App extends Component {
   state = {
@@ -29,7 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <p className="App-intro">{this.state.response}</p>
-        <MoneyForm />
+        <BasicExample />
       </div>
     );
   }
