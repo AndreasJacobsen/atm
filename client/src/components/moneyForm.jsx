@@ -49,7 +49,7 @@ class MoneyForm extends React.Component {
             label="Navn"
             className="tekstfelt"
             margin="normal"
-            value={name}
+            defaultvalue={name}
             name="name"
             onChange={e => this.handleEvent(e)}
           />
@@ -60,7 +60,7 @@ class MoneyForm extends React.Component {
             label="Witdhdrawal amount"
             className="tekstfelt"
             margin="normal"
-            value={whitdrawal}
+            defaultvalue={whitdrawal}
             name="whitdrawal"
             onChange={e => this.handleEvent(e)}
           />
@@ -71,7 +71,7 @@ class MoneyForm extends React.Component {
             label="Reason"
             className="tekstfelt"
             margin="normal"
-            value={reason}
+            defaultvalue={reason}
             name="reason"
             onChange={e => this.handleEvent(e)}
           />

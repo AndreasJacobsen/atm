@@ -9,9 +9,9 @@ class logIn extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      whitdrawal: "",
-      reason: ""
+      cardnumber: "",
+      pin: "",
+      date: new Date().toLocaleString()
     };
     this.handleEvent = this.handleEvent.bind(this);
     {
@@ -21,22 +21,21 @@ class logIn extends React.Component {
   }
 
   handleEvent = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.cardnumber]: e.target.value });
   };
-
   handleSubmit = e => {
     e.preventDefault();
     // get our form data out of state
-    const { name, whitdrawal, reason } = this.state;
+    const { cardnumber, pin, date } = this.state;
 
-    axios.post("/api/formdata", { name, whitdrawal, reason }).then(result => {
-      console.log(this.name);
-      console.log(name);
+    axios.post("/api/formdata", { cardnumber, pin, date }).then(result => {
+      console.log(this.cardnumber);
+      console.log(cardnumber);
     });
   };
 
   render() {
-    const { name, whitdrawal, reason } = this.state;
+    const { cardnumber, pin } = this.state;
     return (
       <React.Fragment>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
@@ -50,8 +49,8 @@ class logIn extends React.Component {
             label="Card number"
             className="tekstfelt"
             margin="normal"
-            value={name}
-            name="name"
+            defaultvalue={cardnumber}
+            name="cardnumber"
             onChange={e => this.handleEvent(e)}
           />
           <br />
@@ -62,7 +61,7 @@ class logIn extends React.Component {
             className="tekstfelt"
             margin="normal"
             type="password"
-            value={whitdrawal}
+            defaultvalue={pin}
             name="whitdrawal"
             onChange={e => this.handleEvent(e)}
           />
@@ -73,13 +72,13 @@ class logIn extends React.Component {
             color="primary"
             className="Knapp"
           >
-            Penger
+            Log in
           </Button>
         </form>
         <p>
-          Name: {this.state.name} <br />
-          Witdhdrawal amount: {this.state.whitdrawal} <br />
-          Reason: {this.state.reason}
+          Cardnumber: {this.state.cardnumber} <br />
+          pin-code: {this.state.pin} <br />
+          date: {this.state.date}
         </p>
       </React.Fragment>
     );
