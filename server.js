@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const AtmUser = require("./models/atmuser");
 
-// Connection data to MongoDB databas
+// Connection data to MongoDB database
 mongoose.Promise = global.Promise;
 mongoose.connect(
   "mongodb://localhost:27017/atm",
@@ -26,7 +26,11 @@ app.use(bodyParser.json());
 app.post("/api/formdata", function(req, res) {
   const newAtmUser = AtmUser({
     name: req.body.name,
-    whitdrawal: req.body.whitdrawal,
+    whitdrawal: [
+      {
+        amount: req.body.whitdrawal
+      }
+    ],
     reason: req.body.reason
   });
   // save the user
