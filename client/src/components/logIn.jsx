@@ -1,17 +1,16 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import axios from "axios";
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
 
 class logIn extends React.Component {
   constructor() {
     super();
     this.state = {
-      cardnumber: "",
-      pin: "",
-      date: new Date().toLocaleString()
+      cardnumber: '',
+      pin: ''
     };
     this.handleEvent = this.handleEvent.bind(this);
     {
@@ -19,16 +18,15 @@ class logIn extends React.Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   handleEvent = e => {
-    this.setState({ [e.target.cardnumber]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
   handleSubmit = e => {
     e.preventDefault();
     // get our form data out of state
-    const { cardnumber, pin, date } = this.state;
+    const { cardnumber, pin } = this.state;
 
-    axios.post("/api/formdata", { cardnumber, pin, date }).then(result => {
+    axios.post('/api/login', { cardnumber, pin }).then(result => {
       console.log(this.cardnumber);
       console.log(cardnumber);
     });
@@ -49,7 +47,7 @@ class logIn extends React.Component {
             label="Card number"
             className="tekstfelt"
             margin="normal"
-            defaultvalue={cardnumber}
+            defaultValue={cardnumber}
             name="cardnumber"
             onChange={e => this.handleEvent(e)}
           />
@@ -60,25 +58,19 @@ class logIn extends React.Component {
             label="PIN code"
             className="tekstfelt"
             margin="normal"
-            type="password"
-            defaultvalue={pin}
-            name="whitdrawal"
+            type="text"
+            defaultValue={pin}
+            name="pin"
             onChange={e => this.handleEvent(e)}
           />
           <br />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className="Knapp"
-          >
+          <Button type="submit" variant="contained" color="primary" className="Knapp">
             Log in
           </Button>
         </form>
         <p>
           Cardnumber: {this.state.cardnumber} <br />
           pin-code: {this.state.pin} <br />
-          date: {this.state.date}
         </p>
       </React.Fragment>
     );
