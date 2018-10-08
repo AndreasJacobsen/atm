@@ -26,7 +26,9 @@ app.use(bodyParser.json());
 app.post('/api/formdata', function(req, res) {
   const newAtmUser = AtmUser({
     name: req.body.name,
-    whitdrawal: req.body.whitdrawal,
+    whitdrawal:[
+      {amount : req.body.whitdrawal}
+    ],
     reason: req.body.reason
   });
   // save the user
