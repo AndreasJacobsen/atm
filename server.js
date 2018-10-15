@@ -42,10 +42,20 @@ app.post('/api/formdata', function(req, res) {
 
 app.get('/api/newUser', function(req) {
   const newUser = AtmUser({
+    name: req.body.name, 
+    balance: req.body.balance, 
+    address: req.body.address,
+    ssn: req.body.ssn, 
+    bankNumber: req.body.bankNumber,
     cards: [
       {
         cardnumber: req.body.cardnumber,
-        pin: req.body.pin
+        pin: req.body.pin,
+        type: req.body.type,
+        cardNumber: req.body.cardnumber,
+        ccv: req.body.ccv, 
+        pin: req.body.pin,
+        expirationDate: req.body.expirationDate
       }
     ]
   })

@@ -47,7 +47,7 @@ class newuser extends React.Component {
     } = this.state;
 
     axios
-      .post('/api/newuser', {
+      .post('/api/newUser', {
         name,
         balance,
         address,
@@ -198,31 +198,31 @@ class newuser extends React.Component {
           />
           <br />
           <Button type="submit" variant="contained" color="primary" className="Knapp">
-            Log in
+            Register new user
           </Button>
         </form>
         <p>
-          name: {this.name}
+          name: {this.state.name}
           <br />
-          balance: {this.balance}
+          balance: {this.state.balance}
           <br />
-          address: {this.address}
+          address: {this.state.address}
           <br />
-          ssn: {this.ssn}
+          ssn: {this.state.ssn}
           <br />
-          bankNumber: {this.cardNumber}
+          bankNumber: {this.state.bankNumber}
           <br />
           <h2>Card information</h2>
-          type: {this.type}
+          type: {this.state.type}
           <br />
-          cardNumber: {this.cardNumber}
+          cardNumber: {this.state.cardNumber}
           <br />
-          cvc: {this.cvc}
+          cvc: {this.state.cvc}
           <br />
           expirationDate:
-          {this.expirationDate}
+          {this.state.expirationDate}
           <br />
-          pin: {this.expirationDate}
+          pin: {this.state.pin}
           <br />
         </p>
       </React.Fragment>
