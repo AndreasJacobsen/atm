@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
 
 // Creates the needed schema
-let whitdrawalSchema = new Schema({
+let userSchema = new Schema({
   name: String,
   created_at: Date,
   updated_at: Date,
@@ -31,18 +32,23 @@ let whitdrawalSchema = new Schema({
   ]
 });
 // Inserts
-whitdrawalSchema.pre('save', function(next) {
+userSchema.pre('save', function(next) {
   const currentDate = new Date();
   this.updated_at = currentDate;
   this.date = currentDate;
-
+  bcrypt.hash(this.pin, 10, function(err, hash){
+    if(err) {
+      return next(err); 
+    }
+    this.ping = hash; 
+  }) 
   if (!this.created_at) this.created_at = currentDate;
 
   next();
 });
 
 // Creates model for schema
-const AtmUser = mongoose.model('AtmUser', whitdrawalSchema);
+const AtmUser = mongoose.model('AtmUser', userSchema);
 
 // Export so it is available for the rest of the application
 module.exports = AtmUser;

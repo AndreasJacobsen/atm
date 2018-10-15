@@ -22,9 +22,10 @@ app.use(
 // Use the parson in the app
 app.use(bodyParser.json());
 
+
 // Get POST values from /api/formdata endpoint, data is sent from client.
 app.post('/api/formdata', function(req, res) {
-  const newAtmUser = AtmUser({
+  const newWhitdrwal = AtmUser({
     name: req.body.name,
     whitdrawal:[
       {amount : req.body.whitdrawal}
@@ -32,12 +33,27 @@ app.post('/api/formdata', function(req, res) {
     reason: req.body.reason
   });
   // save the user
-  newAtmUser.save(function(err) {
+  newWhitdrwal.save(function(err) {
     if (err) throw err;
 
     console.log('User successfully updated!');
   });
 });
+
+app.get('/api/newUser', function(req) {
+  const newUser = AtmUser({
+    cards: [
+      {
+        cardnumber: req.body.cardnumber,
+        pin: req.body.pin
+      }
+    ]
+  })
+  newUser.save(function(err) {
+    if(err) throw err; 
+    console.log('A new user has been made')
+  })
+})
 
 // Show data as JSON at /api/showFormData
 app.get('/api/showFormData', function(req, res) {
