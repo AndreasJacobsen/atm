@@ -17,7 +17,7 @@ let userSchema = new Schema({
       type: String, // Visa eller Mastercard
       cardNumber: Number,
       cvc: Number,
-      expirationDate: Date,
+      expirationDate: Number,
       pin: Number,
       status: Boolean,
       dailyLimit: '9900'
@@ -36,12 +36,6 @@ userSchema.pre('save', function(next) {
   const currentDate = new Date();
   this.updated_at = currentDate;
   this.date = currentDate;
-  bcrypt.hash(this.pin, 10, function(err, hash){
-    if(err) {
-      return next(err); 
-    }
-    this.ping = hash; 
-  }) 
   if (!this.created_at) this.created_at = currentDate;
 
   next();

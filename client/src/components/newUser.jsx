@@ -22,9 +22,6 @@ class newuser extends React.Component {
       pin: ''
     };
     this.handleEvent = this.handleEvent.bind(this);
-    {
-      /* check if can be removed */
-    }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleEvent = e => {
@@ -80,11 +77,10 @@ class newuser extends React.Component {
     } = this.state;
     return (
       <React.Fragment>
-        <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
+        <CssBaseline /> 
         <h1> New user</h1>
-        <form>
+        <form onSubmit={this.handleSubmit} method="POST">
           <br />
-          {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
           <TextField
             required
             id="standard-required"
@@ -197,7 +193,12 @@ class newuser extends React.Component {
             onChange={e => this.handleEvent(e)}
           />
           <br />
-          <Button type="submit" variant="contained" color="primary" className="Knapp">
+          <Button 
+          type="submit" 
+          variant="contained" 
+          color="primary" 
+          className="Knapp"
+          >
             Register new user
           </Button>
         </form>
