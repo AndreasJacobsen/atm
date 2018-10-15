@@ -58,7 +58,7 @@ class logIn extends React.Component {
             label="PIN code"
             className="tekstfelt"
             margin="normal"
-            type="text"
+            type="password"
             defaultValue={pin}
             name="pin"
             onChange={e => this.handleEvent(e)}
