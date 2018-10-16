@@ -14,13 +14,12 @@ let userSchema = new Schema({
   bankNumber: Number,
   cards: [
     {
-      type: String, // Visa eller Mastercard
+      formType: String, // Visa eller Mastercard
       cardNumber: Number,
       cvc: Number,
-      expirationDate: Date,
+      expirationDate: Number,
       pin: Number,
       status: Boolean,
-      dailyLimit: '9900'
     }
   ],
   whitdrawal: [
@@ -34,14 +33,15 @@ let userSchema = new Schema({
 // Inserts
 userSchema.pre('save', function(next) {
   const currentDate = new Date();
-  this.updated_at = currentDate;
-  this.date = currentDate;
-  bcrypt.hash(this.pin, 10, function(err, hash){
-    if(err) {
+  // 10 defines salt rounds
+  bcrypt.hash(this.pin, 10, function(err,hash){
+    if(err){
       return next(err); 
     }
-    this.ping = hash; 
-  }) 
+    this.pin = hash; 
+  })
+  this.updated_at = currentDate;
+  this.date = currentDate;
   if (!this.created_at) this.created_at = currentDate;
 
   next();

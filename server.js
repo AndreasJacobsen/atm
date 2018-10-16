@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 
 // Get POST values from /api/formdata endpoint, data is sent from client.
-app.post('/api/formdata', function(req, res) {
+app.post('/api/formdata', function(req) {
   const newWhitdrwal = AtmUser({
     name: req.body.name,
     whitdrawal:[
@@ -40,7 +40,7 @@ app.post('/api/formdata', function(req, res) {
   });
 });
 
-app.get('/api/newUser', function(req) {
+app.post('/api/newUser', function(req) {
   const newUser = AtmUser({
     name: req.body.name, 
     balance: req.body.balance, 
@@ -48,17 +48,16 @@ app.get('/api/newUser', function(req) {
     ssn: req.body.ssn, 
     bankNumber: req.body.bankNumber,
     cards: [
-      {
-        cardnumber: req.body.cardnumber,
+      { 
+        formType: req.body.type, // Visa eller Mastercard
+        cardNumber: req.body.cardNumber,
+        cvc: req.body.cvc,
+        expirationDate: req.body.expirationDate,
         pin: req.body.pin,
-        type: req.body.type,
-        cardNumber: req.body.cardnumber,
-        ccv: req.body.ccv, 
-        pin: req.body.pin,
-        expirationDate: req.body.expirationDate
       }
-    ]
-  })
+    ],
+  });
+
   newUser.save(function(err) {
     if(err) throw err; 
     console.log('A new user has been made')
