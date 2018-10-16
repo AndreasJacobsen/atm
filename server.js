@@ -49,7 +49,7 @@ app.post('/api/newUser', function(req) {
     bankNumber: req.body.bankNumber,
     cards: [
       { 
-        type: req.body.type, // Visa eller Mastercard
+        formType: req.body.type, // Visa eller Mastercard
         cardNumber: req.body.cardNumber,
         cvc: req.body.cvc,
         expirationDate: req.body.expirationDate,
