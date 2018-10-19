@@ -34,16 +34,18 @@ let userSchema = new Schema({
 userSchema.pre('save', function(next) {
   const currentDate = new Date();
   // 10 defines salt rounds
-  bcrypt.hash(this.pin, 10, function(err,hash){
+  const pin = this.cards[0].pin
+  bcrypt.hash(pin, 10, function(err,hash){
     if(err){
       return next(err); 
     }
     this.pin = hash; 
+    console.log(pin)
   })
   this.updated_at = currentDate;
   this.date = currentDate;
+  console.log(pin)
   if (!this.created_at) this.created_at = currentDate;
-
   next();
 });
 
