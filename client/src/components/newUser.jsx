@@ -16,7 +16,6 @@ class newuser extends React.Component {
       address: '',
       ssn: '',
       bankNumber: '',
-      //Card information
       type: '',
       selectedOption: '',
       cardNumber: '',
@@ -31,7 +30,7 @@ class newuser extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   handleChange = e => {
-    this.setState({ [e.target.type]: e.target.value });
+    this.setState({ type: e.target.value });
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -83,7 +82,7 @@ class newuser extends React.Component {
     } = this.state;
     return (
       <React.Fragment>
-        <CssBaseline /> 
+        <CssBaseline />
         <h1> New user</h1>
         <form onSubmit={this.handleSubmit} method="POST">
           <br />
@@ -102,13 +101,18 @@ class newuser extends React.Component {
           <TextField
             required
             id="standard-required"
-            label="Balance"
+            label="Balance in NOK"
             className="tekstfelt"
             margin="normal"
             defaultValue={balance}
             name="balance"
             type="number"
             onChange={e => this.handleEvent(e)}
+            onInput={e => {
+              e.target.value = Math.max(0, parseInt(e.target.value))
+                .toString()
+                .slice(0, 10);
+            }}
           />
           <br />
           <TextField
@@ -130,6 +134,11 @@ class newuser extends React.Component {
             className="tekstfelt"
             margin="normal"
             defaultValue={ssn}
+            onInput={e => {
+              e.target.value = Math.max(0, parseInt(e.target.value))
+                .toString()
+                .slice(0, 11);
+            }}
             name="ssn"
             type="number"
             onChange={e => this.handleEvent(e)}
@@ -148,7 +157,7 @@ class newuser extends React.Component {
           />
           <br />
           <h2> Card info:</h2>
-          <Select value={this.state.type} onChange={e => this.handleChange(e)}>
+          <Select value={this.state.type} onChange={this.handleChange}>
             <MenuItem value="visa">Visa</MenuItem>
             <MenuItem value="mastercard">Mastercard</MenuItem>
           </Select>
@@ -161,6 +170,11 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={cardNumber}
             name="cardNumber"
+            onInput={e => {
+              e.target.value = Math.max(0, parseInt(e.target.value))
+                .toString()
+                .slice(0, 16);
+            }}
             type="number"
             onChange={e => this.handleEvent(e)}
           />
@@ -169,6 +183,11 @@ class newuser extends React.Component {
             required
             id="standard-required"
             label="CVC"
+            onInput={e => {
+              e.target.value = Math.max(0, parseInt(e.target.value))
+                .toString()
+                .slice(0, 3);
+            }}
             className="tekstfelt"
             margin="normal"
             defaultValue={cvc}
@@ -183,6 +202,11 @@ class newuser extends React.Component {
             label="PIN code"
             className="tekstfelt"
             margin="normal"
+            onInput={e => {
+              e.target.value = Math.max(0, parseInt(e.target.value))
+                .toString()
+                .slice(0, 4);
+            }}
             defaultValue={pin}
             name="pin"
             onChange={e => this.handleEvent(e)}
@@ -201,12 +225,7 @@ class newuser extends React.Component {
             onChange={e => this.handleEvent(e)}
           />
           <br />
-          <Button 
-          type="submit" 
-          variant="contained" 
-          color="primary" 
-          className="Knapp"
-          >
+          <Button type="submit" variant="contained" color="primary" className="Knapp">
             Register new user
           </Button>
         </form>
@@ -222,7 +241,7 @@ class newuser extends React.Component {
           bankNumber: {this.state.bankNumber}
           <br />
           <h2>Card information</h2>
-          type: {this.state.type.selectedOption}
+          type: {this.state.type}
           <br />
           cardNumber: {this.state.cardNumber}
           <br />
