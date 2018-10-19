@@ -6,6 +6,12 @@ import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 class newuser extends React.Component {
   constructor() {
@@ -151,6 +157,11 @@ class newuser extends React.Component {
             className="tekstfelt"
             margin="normal"
             defaultValue={bankNumber}
+            onInput={e => {
+              e.target.value = Math.max(0, parseInt(e.target.value))
+                .toString()
+                .slice(0, 12);
+            }}
             name="bankNumber"
             type="number"
             onChange={e => this.handleEvent(e)}
@@ -220,7 +231,7 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={expirationDate}
             name="expirationDate"
-            defaultValue="2017-05-24"
+            defaultValue="2021-01-24"
             type="date"
             onChange={e => this.handleEvent(e)}
           />
@@ -231,39 +242,47 @@ class newuser extends React.Component {
         </form>
         <p>
           <h2>User information</h2>
-          <table>
-            <tr>
-              <th>Name</th>
-              <th>Balance</th>
-              <th>Address</th>
-              <th>SSN</th>
-              <th>Bank number</th>
-            </tr>
-            <tr>
-              <td>{this.state.name}</td>
-              <td>{this.state.balance}</td>
-              <td>{this.state.address}</td>
-              <td>{this.state.ssn}</td>
-              <td>{this.state.bankNumber}</td>
-            </tr>
-          </table>
+          <Paper>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Balance</TableCell>
+                  <TableCell>Address</TableCell>
+                  <TableCell>SSN</TableCell>
+                  <TableCell>Bank number</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableCell>{this.state.name}</TableCell>
+                <TableCell>{this.state.balance}</TableCell>
+                <TableCell>{this.state.address}</TableCell>
+                <TableCell>{this.state.ssn}</TableCell>
+                <TableCell>{this.state.bankNumber}</TableCell>
+              </TableBody>
+            </Table>
+          </Paper>
           <h2>Card information</h2>
-          <table>
-            <tr>
-              <th>Card type</th>
-              <th>Card number</th>
-              <th>CVC</th>
-              <th>Expiration date</th>
-              <th>Pin</th>
-            </tr>
-            <tr>
-              <td>{this.state.type}</td>
-              <td>{this.state.cardNumber}</td>
-              <td>{this.state.cvc}</td>
-              <td>{this.state.expirationDate}</td>
-              <td>{this.state.pin}</td>
-            </tr>
-          </table>
+          <Paper>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Card type</TableCell>
+                  <TableCell>Card number</TableCell>
+                  <TableCell>CVC</TableCell>
+                  <TableCell>PIN</TableCell>
+                  <TableCell>Expiration date</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableCell>{this.state.type}</TableCell>
+                <TableCell>{this.state.cardNumber}</TableCell>
+                <TableCell>{this.state.cvc}</TableCell>
+                <TableCell>{this.state.pin}</TableCell>
+                <TableCell>{this.state.expirationDate}</TableCell>
+              </TableBody>
+            </Table>
+          </Paper>
         </p>
       </React.Fragment>
     );

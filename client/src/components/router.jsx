@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import MoneyForm from './moneyForm';
 import logIn from './logIn';
 import newuser from './newUser';
+import AllUsers from './allUsers';
+
 const BasicExample = () => (
   <Router>
     <div>
@@ -23,6 +25,7 @@ const BasicExample = () => (
       <Route exact path="/" component={logIn} />
       <Route path="/moneyform" component={MoneyForm} />
       <Route path="/newuser" component={newuser} />
+      <Route path="/allusers" component={AllUsers} />
     </div>
   </Router>
 );
