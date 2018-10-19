@@ -19,13 +19,13 @@ let userSchema = new Schema({
       cvc: Number,
       expirationDate: Date,
       pin: String,
-      status: Boolean,
+      status: Boolean
     }
   ],
   whitdrawal: [
     {
       amount: Number,
-      date: String, 
+      date: String,
       reason: String
     }
   ]
@@ -33,21 +33,24 @@ let userSchema = new Schema({
 userSchema.pre('save', function(next) {
   const currentDate = new Date();
   // 10 defines salt rounds
-  let pin = this.cards[0].pin
-  bcrypt.hash(pin, 10).then((pin) => {
+  let pin = this.cards[0].pin;
+  bcrypt
+    .hash(pin, 10)
+    .then(pin => {
       this.updated_at = currentDate;
       this.date = currentDate;
       this.cards[0].pin = pin;
-      console.log("Pin is " + pin)
+      console.log('Pin is ' + pin);
       if (!this.created_at) this.created_at = currentDate;
       next();
-  }).catch((err) => {
-      next(err); 
-  })
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 // Creates model for schema
-const AtmUser = mongoose.model('AtmUser',     userSchema);
+const AtmUser = mongoose.model('AtmUser', userSchema);
 
 // Export so it is available for the rest of the application
 module.exports = AtmUser;
