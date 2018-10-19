@@ -31,7 +31,7 @@ class MoneyForm extends React.Component {
 
     axios.post('/api/formdata', { name, whitdrawal, reason }).then(result => {
       console.log(this.name);
-      console.log(name);
+      console.log(result.name);
     });
   };
 
