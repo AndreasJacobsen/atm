@@ -60,6 +60,7 @@ class MoneyForm extends React.Component {
             label="Witdhdrawal amount"
             className="tekstfelt"
             margin="normal"
+            type="number"
             defaultvalue={whitdrawal}
             onInput={e => {
               e.target.value = Math.max(0, parseInt(e.target.value))

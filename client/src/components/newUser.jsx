@@ -230,28 +230,40 @@ class newuser extends React.Component {
           </Button>
         </form>
         <p>
-          name: {this.state.name}
-          <br />
-          balance: {this.state.balance}
-          <br />
-          address: {this.state.address}
-          <br />
-          ssn: {this.state.ssn}
-          <br />
-          bankNumber: {this.state.bankNumber}
-          <br />
+          <h2>User information</h2>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Balance</th>
+              <th>Address</th>
+              <th>SSN</th>
+              <th>Bank number</th>
+            </tr>
+            <tr>
+              <td>{this.state.name}</td>
+              <td>{this.state.balance}</td>
+              <td>{this.state.address}</td>
+              <td>{this.state.ssn}</td>
+              <td>{this.state.bankNumber}</td>
+            </tr>
+          </table>
           <h2>Card information</h2>
-          type: {this.state.type}
-          <br />
-          cardNumber: {this.state.cardNumber}
-          <br />
-          cvc: {this.state.cvc}
-          <br />
-          expirationDate:
-          {this.state.expirationDate}
-          <br />
-          pin: {this.state.pin}
-          <br />
+          <table>
+            <tr>
+              <th>Card type</th>
+              <th>Card number</th>
+              <th>CVC</th>
+              <th>Expiration date</th>
+              <th>Pin</th>
+            </tr>
+            <tr>
+              <td>{this.state.type}</td>
+              <td>{this.state.cardNumber}</td>
+              <td>{this.state.cvc}</td>
+              <td>{this.state.expirationDate}</td>
+              <td>{this.state.pin}</td>
+            </tr>
+          </table>
         </p>
       </React.Fragment>
     );
