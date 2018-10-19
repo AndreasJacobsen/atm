@@ -4,6 +4,8 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 class newuser extends React.Component {
   constructor() {
@@ -16,6 +18,7 @@ class newuser extends React.Component {
       bankNumber: '',
       //Card information
       type: '',
+      selectedOption: '',
       cardNumber: '',
       cvc: '',
       expirationDate: '',
@@ -26,6 +29,9 @@ class newuser extends React.Component {
   }
   handleEvent = e => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+  handleChange = e => {
+    this.setState({ [e.target.type]: e.target.value });
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -88,6 +94,7 @@ class newuser extends React.Component {
             className="tekstfelt"
             margin="normal"
             defaultValue={name}
+            type="text"
             name="name"
             onChange={e => this.handleEvent(e)}
           />
@@ -100,6 +107,7 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={balance}
             name="balance"
+            type="number"
             onChange={e => this.handleEvent(e)}
           />
           <br />
@@ -111,6 +119,7 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={address}
             name="address"
+            type="text"
             onChange={e => this.handleEvent(e)}
           />
           <br />
@@ -122,6 +131,7 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={ssn}
             name="ssn"
+            type="number"
             onChange={e => this.handleEvent(e)}
           />
           <br />
@@ -133,20 +143,15 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={bankNumber}
             name="bankNumber"
+            type="number"
             onChange={e => this.handleEvent(e)}
           />
           <br />
           <h2> Card info:</h2>
-          <TextField
-            required
-            id="standard-required"
-            label="Type of card"
-            className="tekstfelt"
-            margin="normal"
-            defaultValue={type}
-            name="type"
-            onChange={e => this.handleEvent(e)}
-          />
+          <Select value={this.state.type} onChange={e => this.handleChange(e)}>
+            <MenuItem value="visa">Visa</MenuItem>
+            <MenuItem value="mastercard">Mastercard</MenuItem>
+          </Select>
           <br />
           <TextField
             required
@@ -156,6 +161,7 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={cardNumber}
             name="cardNumber"
+            type="number"
             onChange={e => this.handleEvent(e)}
           />
           <br />
@@ -190,6 +196,8 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={expirationDate}
             name="expirationDate"
+            defaultValue="2017-05-24"
+            type="date"
             onChange={e => this.handleEvent(e)}
           />
           <br />
@@ -214,7 +222,7 @@ class newuser extends React.Component {
           bankNumber: {this.state.bankNumber}
           <br />
           <h2>Card information</h2>
-          type: {this.state.type}
+          type: {this.state.type.selectedOption}
           <br />
           cardNumber: {this.state.cardNumber}
           <br />
