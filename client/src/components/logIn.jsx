@@ -49,6 +49,11 @@ class logIn extends React.Component {
             margin="normal"
             defaultValue={cardnumber}
             name="cardnumber"
+            onInput={e => {
+              e.target.value = Math.max(0, parseInt(e.target.value))
+                .toString()
+                .slice(0, 12);
+            }}
             onChange={e => this.handleEvent(e)}
           />
           <br />
@@ -61,6 +66,11 @@ class logIn extends React.Component {
             type="password"
             defaultValue={pin}
             name="pin"
+            onInput={e => {
+              e.target.value = Math.max(0, parseInt(e.target.value))
+                .toString()
+                .slice(0, 4);
+            }}
             onChange={e => this.handleEvent(e)}
           />
           <br />
