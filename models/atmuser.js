@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const Schema = mongoose.Schema;
 
@@ -12,6 +13,8 @@ let userSchema = new Schema({
   address: String,
   ssn: Number,
   bankNumber: Number,
+  hash: String,
+  salt: String,
   cards: [
     {
       formType: String, // Visa eller Mastercard
@@ -30,6 +33,7 @@ let userSchema = new Schema({
     }
   ]
 });
+
 userSchema.pre('save', function(next) {
   const currentDate = new Date();
   // 10 defines salt rounds
@@ -48,6 +52,30 @@ userSchema.pre('save', function(next) {
       next(err);
     });
 });
+
+userSchema.statics.authenticate = function(pin, callback) {
+  userSchema
+    .findOne({
+      name: 1231
+    })
+    .exec(function(err, user) {
+      if (err) {
+        return callback(err);
+      } else if (!userSchema) {
+        var err = new Error('User not found');
+        err.status = 401;
+        return callback(error);
+      }
+
+      bcrypt.compare(pin, userSchema.pin, function(err, result) {
+        if (result == true) {
+          return callback(null, user);
+        } else {
+          return callback();
+        }
+      });
+    });
+};
 
 // Creates model for schema
 const AtmUser = mongoose.model('AtmUser', userSchema);
