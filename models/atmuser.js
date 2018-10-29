@@ -54,27 +54,24 @@ userSchema.pre('save', function(next) {
 });
 
 userSchema.statics.authenticate = function(pin, callback) {
-  userSchema
-    .findOne({
-      name: 1231
-    })
-    .exec(function(err, user) {
-      if (err) {
-        return callback(err);
-      } else if (!userSchema) {
-        var err = new Error('User not found');
-        err.status = 401;
-        return callback(error);
+  AtmUser.findOne({
+    pin: pin
+  }).exec(function(err, pin) {
+    if (err) {
+      return callback(err);
+    } else if (!userSchema) {
+      var err = new Error('User not found');
+      err.status = 401;
+      return callback(error);
+    }
+    bcrypt.compare(pin, userSchema.pin, function(err, result) {
+      if (result == true) {
+        return callback(null, pin);
+      } else {
+        return callback();
       }
-
-      bcrypt.compare(pin, userSchema.pin, function(err, result) {
-        if (result == true) {
-          return callback(null, user);
-        } else {
-          return callback();
-        }
-      });
     });
+  });
 };
 
 // Creates model for schema

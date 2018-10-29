@@ -2,7 +2,9 @@ CREATE TABLE user (
   UserID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   CreatedAt DATETIME NOT NULL,
   Address VARCHAR(250),
-  SSN INT
+  SSN INT,
+  fName VARCHAR(250),
+  lName VARCHAR(250)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;
 
   CREATE TABLE userCards (
@@ -13,7 +15,9 @@ CREATE TABLE user (
     CVC INT(3),
     PIN INT(4),
     Status BOOLEAN,
-    Balance INT,
+    Balance INT, 
+    Type VARCHAR(50),
+    ExpirationDate VARCHAR(50),
     FOREIGN KEY (UserID) REFERENCES user(UserID)
 
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;
