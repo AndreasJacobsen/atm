@@ -85,7 +85,9 @@ class newuser extends React.Component {
       cardNumber,
       cvc,
       expirationDate,
-      pin
+      pin,
+      Lname,
+      Fname
     } = this.state;
     return (
       <React.Fragment>
