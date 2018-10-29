@@ -3,7 +3,7 @@ CREATE TABLE user (
   CreatedAt DATE,
   Address VARCHAR(250),
   SSN INT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;
 
   CREATE TABLE userCards (
     AccountID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -16,7 +16,7 @@ CREATE TABLE user (
     Balance INT,
     FOREIGN KEY (UserID) REFERENCES user(UserID)
 
-  );
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;
 
   CREATE TABLE transactions (
     TransactionID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -24,4 +24,4 @@ CREATE TABLE user (
     Reason VARCHAR(255),
     UserID INT NOT NULL,
     FOREIGN KEY (UserID) REFERENCES user(UserID)
-  );
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
