@@ -17,7 +17,8 @@ class newuser extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: '',
+      Fname: '',
+      Lname: '',
       balance: '',
       address: '',
       ssn: '',
@@ -95,12 +96,24 @@ class newuser extends React.Component {
           <TextField
             required
             id="standard-required"
-            label="Name"
+            label="First name"
             className="tekstfelt"
             margin="normal"
-            defaultValue={name}
+            defaultValue={Fname}
             type="text"
-            name="name"
+            name="Fname"
+            onChange={e => this.handleEvent(e)}
+          />
+          <br />
+          <TextField
+            required
+            id="standard-required"
+            label="Last name"
+            className="tekstfelt"
+            margin="normal"
+            defaultValue={Lname}
+            type="text"
+            name="Fname"
             onChange={e => this.handleEvent(e)}
           />
           <br />
@@ -246,7 +259,8 @@ class newuser extends React.Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Name</TableCell>
+                  <TableCell>First name</TableCell>
+                  <TableCell>Last name</TableCell>
                   <TableCell>Balance</TableCell>
                   <TableCell>Address</TableCell>
                   <TableCell>SSN</TableCell>
@@ -254,7 +268,8 @@ class newuser extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableCell>{this.state.name}</TableCell>
+                <TableCell>{this.state.Fname}</TableCell>
+                <TableCell>{this.state.Lname}</TableCell>
                 <TableCell>{this.state.balance}</TableCell>
                 <TableCell>{this.state.address}</TableCell>
                 <TableCell>{this.state.ssn}</TableCell>
