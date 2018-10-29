@@ -1,6 +1,6 @@
 CREATE TABLE user (
   UserID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  CreatedAt DATE,
+  CreatedAt DATETIME NOT NULL,
   Address VARCHAR(250),
   SSN INT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;
@@ -23,5 +23,6 @@ CREATE TABLE user (
     Amount INT,
     Reason VARCHAR(255),
     UserID INT NOT NULL,
+    Date DATETIME NOT NULL,
     FOREIGN KEY (UserID) REFERENCES user(UserID)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
