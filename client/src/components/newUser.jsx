@@ -43,7 +43,8 @@ class newuser extends React.Component {
     e.preventDefault();
     // get our form data out of state
     const {
-      name,
+      Fname,
+      Lname,
       balance,
       address,
       ssn,
@@ -57,7 +58,8 @@ class newuser extends React.Component {
 
     axios
       .post('/api/newUser', {
-        name,
+        Fname,
+        Lname,
         balance,
         address,
         ssn,
@@ -80,7 +82,6 @@ class newuser extends React.Component {
       address,
       ssn,
       bankNumber,
-      type,
       cardNumber,
       cvc,
       expirationDate,
@@ -114,7 +115,7 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={Lname}
             type="text"
-            name="Fname"
+            name="Lname"
             onChange={e => this.handleEvent(e)}
           />
           <br />
