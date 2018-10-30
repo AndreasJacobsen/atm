@@ -27,7 +27,8 @@ router.post('/', function(req, res){
           "CVC": req.body.cvc, 
           "expirationDate": req.body.expirationDate,
           "Balance":req.body.balance,
-          "PIN": pin
+          "PIN": pin,
+          "Status": true
     
         }
         insertSql(users, card)

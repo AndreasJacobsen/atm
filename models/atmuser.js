@@ -53,25 +53,28 @@ userSchema.pre('save', function(next) {
     });
 });
 
-userSchema.statics.authenticate = function(pin, callback) {
-  AtmUser.findOne({
-    pin: pin
-  }).exec(function(err, pin) {
-    if (err) {
-      return callback(err);
-    } else if (!userSchema) {
-      var err = new Error('User not found');
-      err.status = 401;
-      return callback(error);
-    }
-    bcrypt.compare(pin, userSchema.pin, function(err, result) {
-      if (result == true) {
-        return callback(null, pin);
-      } else {
-        return callback();
+userSchema.statics.authenticate = function(name, callback) {
+  userSchema
+    .findOne({
+      name: name
+    })
+    .exec(function(err, userSchema) {
+      if (err) {
+        return callback(err);
+      } else if (!userSchema) {
+        var err = new Error('User not found');
+        err.status = 401;
+        return callback(error);
       }
+
+      bcrypt.compare(name, userSchema.name, function(err, result) {
+        if (result == true) {
+          return callback(null, userSchema);
+        } else {
+          return callback();
+        }
+      });
     });
-  });
 };
 
 // Creates model for schema

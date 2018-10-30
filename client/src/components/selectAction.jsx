@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class selectAction extends React.Component {
   constructor() {
@@ -37,51 +38,22 @@ class selectAction extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
-        <h1> Log in</h1>
-        <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
-          <br />
-          {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
-          <TextField
-            required
-            id="standard-required"
-            label="Card number"
-            className="tekstfelt"
-            margin="normal"
-            defaultValue={cardnumber}
-            name="cardnumber"
-            onInput={e => {
-              e.target.value = Math.max(0, parseInt(e.target.value))
-                .toString()
-                .slice(0, 12);
-            }}
-            onChange={e => this.handleEvent(e)}
-          />
-          <br />
-          <TextField
-            required
-            id="standard-required"
-            label="PIN code"
-            className="tekstfelt"
-            margin="normal"
-            type="password"
-            defaultValue={pin}
-            name="pin"
-            onInput={e => {
-              e.target.value = Math.max(0, parseInt(e.target.value))
-                .toString()
-                .slice(0, 4);
-            }}
-            onChange={e => this.handleEvent(e)}
-          />
-          <br />
-          <Button type="submit" variant="contained" color="primary" className="Knapp">
-            Log in
-          </Button>
-        </form>
-        <p>
-          Cardnumber: {this.state.cardnumber} <br />
-          pin-code: {this.state.pin} <br />
-        </p>
+        <h1> Choose an action</h1>
+        <br />
+        {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
+        <Button variant="contained" color="primary" className="Knapp">
+          <Link to="/withdrawl">Withdrawl money</Link>
+        </Button>
+        <br />
+        <br />
+        <Button variant="contained" color="primary" className="Knapp">
+          <Link to="/moneyform">Transfer money</Link>
+        </Button>
+        <br />
+        <br />
+        <Button variant="contained" color="secondary" className="Knapp">
+          Log out
+        </Button>
       </React.Fragment>
     );
   }

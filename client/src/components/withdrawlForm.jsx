@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 
-class MoneyForm extends React.Component {
+class WithdrawalForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -39,41 +39,39 @@ class MoneyForm extends React.Component {
     const { name, whitdrawal, reason } = this.state;
     return (
       <React.Fragment>
-        <h1> To whom and how much do you want to transfer?</h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
+        <h1>How much do you want to withdraw?</h1>
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
-          <TextField
-            required
-            id="standard-required"
-            label="Navn"
-            className="tekstfelt"
-            margin="normal"
-            defaultvalue={name}
-            name="name"
-            onChange={e => this.handleEvent(e)}
-          />
+          <br />
+
+          <Button variant="contained" color="primary" className="Knapp">
+            200 NOK
+          </Button>
+          <Button variant="contained" color="primary" className="Knapp">
+            300 NOK
+          </Button>
+          <br />
+          <br />
+          <Button variant="contained" color="primary" className="Knapp">
+            400 NOK
+          </Button>
+          <Button variant="contained" color="primary" className="Knapp">
+            500 NOK
+          </Button>
+          <br />
+          <br />
+          <Button variant="contained" color="primary" className="Knapp">
+            700 NOK
+          </Button>
+          <Button variant="contained" color="primary" className="Knapp">
+            1000 NOK
+          </Button>
+
+          <br />
           <br />
           <TextField
-            required
-            id="standard-required"
-            label="Witdhdrawal amount"
-            className="tekstfelt"
-            margin="normal"
-            type="number"
-            defaultvalue={whitdrawal}
-            onInput={e => {
-              e.target.value = Math.max(0, parseInt(e.target.value))
-                .toString()
-                .slice(0, 4);
-            }}
-            name="whitdrawal"
-            onChange={e => this.handleEvent(e)}
-          />
-          <br />
-          <TextField
-            required
             id="standard-required"
             label="Reason"
             className="tekstfelt"
@@ -83,17 +81,17 @@ class MoneyForm extends React.Component {
             onChange={e => this.handleEvent(e)}
           />
           <br />
-          <Button type="submit" variant="contained" color="primary" className="Knapp">
-            Penger
+          <br />
+
+          <Button variant="contained" color="secondary" className="Knapp">
+            Other amount
           </Button>
+
+          <br />
+          <br />
         </form>
-        <p>
-          Name: {this.state.name} <br />
-          Witdhdrawal amount: {this.state.whitdrawal} <br />
-          Reason: {this.state.reason}
-        </p>
       </React.Fragment>
     );
   }
 }
-export default MoneyForm;
+export default WithdrawalForm;
