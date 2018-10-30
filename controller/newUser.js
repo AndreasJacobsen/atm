@@ -1,7 +1,7 @@
 const connection = require('../models/loginrouters');
 
 function insertSql(users, card, res) {
-  connection.query('INSERT INTO user SET ?', users, function(error, results, fields) {
+  connection.query('INSERT INTO atmUsers SET ?', users, function(error, results, fields) {
     const lastID = results.insertId;
     card.UserID = lastID;
     if (error) {
