@@ -76,7 +76,6 @@ class newuser extends React.Component {
 
   render() {
     const {
-      name,
       balance,
       address,
       ssn,
