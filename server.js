@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000;
 const newUser = require('./controller/newUserRouter.js');
+const authenticator = require('./controller/authenticator');
 
 // Dataparser, parsing data from react front end to Json
 app.use(
@@ -13,8 +14,6 @@ app.use(
 // Morgan does logging
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
 // Use the parson in the app
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
@@ -25,6 +24,6 @@ app.use(function(req, res, next) {
 
 // Router endpoint to retrive data from front end, also inserts data into DB via NewUser.js
 app.use('/api/newUser', newUser);
-
+app.use('/api/login', authenticator);
 // Defines server port number, set to 5000 for back end and 3000 for front end.
 app.listen(port, () => console.log(`Back end is listening on port ${port}`));
