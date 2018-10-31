@@ -6,6 +6,7 @@ import newuser from './newUser';
 import AllUsers from './allUsers';
 import selectAction from './selectAction';
 import WithdrawalForm from './withdrawlForm';
+import otherAmount from './otherAmount';
 
 const BasicExample = () => (
   <Router>
@@ -80,6 +81,7 @@ const BasicExample = () => (
       <Route path="/allusers" component={AllUsers} />
       <Route path="/selectaction" component={selectAction} />
       <Route path="/withdrawl" component={WithdrawalForm} />
+      <Route path="/otheramount" component={otherAmount} />
     </div>
   </Router>
 );
