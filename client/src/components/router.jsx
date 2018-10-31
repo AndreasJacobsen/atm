@@ -5,6 +5,8 @@ import logIn from './logIn';
 import newuser from './newUser';
 import AllUsers from './allUsers';
 import selectAction from './selectAction';
+import WithdrawalForm from './withdrawlForm';
+import otherAmount from './otherAmount';
 
 const BasicExample = () => (
   <Router>
@@ -20,7 +22,7 @@ const BasicExample = () => (
             Select action
           </Link>{' '}
           ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/selectaction">
+          <Link style={{ textDecoration: 'none', color: '' }} to="/withdrawl">
             Withdrawl form
           </Link>{' '}
           ->
@@ -78,6 +80,8 @@ const BasicExample = () => (
       <Route path="/newuser" component={newuser} />
       <Route path="/allusers" component={AllUsers} />
       <Route path="/selectaction" component={selectAction} />
+      <Route path="/withdrawl" component={WithdrawalForm} />
+      <Route path="/otheramount" component={otherAmount} />
     </div>
   </Router>
 );

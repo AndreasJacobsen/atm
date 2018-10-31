@@ -1,5 +1,4 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -78,16 +77,17 @@ class newuser extends React.Component {
 
   render() {
     const {
+      Fname,
+      Lname,
       balance,
       address,
       ssn,
       bankNumber,
+      type,
       cardNumber,
       cvc,
       expirationDate,
-      pin,
-      Lname,
-      Fname
+      pin
     } = this.state;
     return (
       <React.Fragment>
@@ -115,7 +115,7 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={Lname}
             type="text"
-            name="Lname"
+            name="Fname"
             onChange={e => this.handleEvent(e)}
           />
           <br />

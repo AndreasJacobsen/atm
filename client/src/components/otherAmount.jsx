@@ -4,13 +4,13 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-class MoneyForm extends React.Component {
+class otherAmount extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: '',
-      whitdrawal: '',
+      amount: '',
       reason: ''
     };
     this.handleEvent = this.handleEvent.bind(this);
@@ -21,22 +21,22 @@ class MoneyForm extends React.Component {
   }
 
   handleEvent = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.amount]: e.target.value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
     // get our form data out of state
-    const { name, whitdrawal, reason } = this.state;
+    const { amount, reason } = this.state;
 
-    axios.post('/api/formdata', { name, whitdrawal, reason }).then(result => {
-      console.log(this.name);
-      console.log(result.name);
+    axios.post('/api/formdata', { amount, reason }).then(result => {
+      console.log(this.amount);
+      console.log(result.amount);
     });
   };
 
   render() {
-    const { name, whitdrawal, reason } = this.state;
+    const { amount, reason } = this.state;
     return (
       <React.Fragment>
         <h1> To whom and how much do you want to transfer?</h1>
@@ -47,33 +47,16 @@ class MoneyForm extends React.Component {
           <TextField
             required
             id="standard-required"
-            label="Navn"
+            label="Ammount to withdrawl"
             className="tekstfelt"
             margin="normal"
-            defaultvalue={name}
-            name="name"
+            defaultvalue={amount}
+            name="amount"
             onChange={e => this.handleEvent(e)}
           />
+
           <br />
           <TextField
-            required
-            id="standard-required"
-            label="Witdhdrawal amount"
-            className="tekstfelt"
-            margin="normal"
-            type="number"
-            defaultvalue={whitdrawal}
-            onInput={e => {
-              e.target.value = Math.max(0, parseInt(e.target.value))
-                .toString()
-                .slice(0, 4);
-            }}
-            name="whitdrawal"
-            onChange={e => this.handleEvent(e)}
-          />
-          <br />
-          <TextField
-            required
             id="standard-required"
             label="Reason"
             className="tekstfelt"
@@ -83,17 +66,20 @@ class MoneyForm extends React.Component {
             onChange={e => this.handleEvent(e)}
           />
           <br />
+          <br />
           <Button type="submit" variant="contained" color="primary" className="Knapp">
-            Penger
+            <Link to="/selectaction">Main menu</Link>
+          </Button>
+          <Button type="submit" variant="contained" color="primary" className="Knapp">
+            withdrawl
           </Button>
         </form>
         <p>
-          Name: {this.state.name} <br />
-          Witdhdrawal amount: {this.state.whitdrawal} <br />
+          Amount: {this.state.amount} <br />
           Reason: {this.state.reason}
         </p>
       </React.Fragment>
     );
   }
 }
-export default MoneyForm;
+export default otherAmount;
