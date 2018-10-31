@@ -7,12 +7,16 @@ import AllUsers from './allUsers';
 import selectAction from './selectAction';
 import WithdrawalForm from './withdrawlForm';
 import otherAmount from './otherAmount';
+import confirmWithdrawl from './confirmWithdrawl';
+import takeCard from './takeCard';
+import takeCash from './takeCash';
+import confirmTransfer from './confirmTransfer';
 
 const BasicExample = () => (
   <Router>
     <div>
       <ul>
-        <b>Case 1: Transfer money</b>
+        <b>Case 1: Withdrawl</b>
         <li style={{ listStyle: 'none' }}>
           <Link style={{ textDecoration: 'none', color: '' }} to="/">
             Log in
@@ -26,15 +30,19 @@ const BasicExample = () => (
             Withdrawl form
           </Link>{' '}
           ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/moneyform">
-            Confirm
+          <Link style={{ textDecoration: 'none', color: '' }} to="/otheramount">
+            Other ammount
           </Link>
           ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/moneyform">
+          <Link style={{ textDecoration: 'none', color: '' }} to="/confirmwithdrawl">
+            Confirm
+          </Link>{' '}
+          ->
+          <Link style={{ textDecoration: 'none', color: '' }} to="/takecard">
             Take card
           </Link>{' '}
           ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/moneyform">
+          <Link style={{ textDecoration: 'none', color: '' }} to="/takecash">
             Take cash
           </Link>
         </li>
@@ -53,15 +61,15 @@ const BasicExample = () => (
             Money form
           </Link>{' '}
           ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/moneyform">
+          <Link style={{ textDecoration: 'none', color: '' }} to="/confirmtransfer">
             Confirm
           </Link>
           ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/moneyform">
+          <Link style={{ textDecoration: 'none', color: '' }} to="/takecard">
             Take card
           </Link>{' '}
           ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/moneyform">
+          <Link style={{ textDecoration: 'none', color: '' }} to="/takecash">
             Take cash
           </Link>
         </li>
@@ -82,6 +90,10 @@ const BasicExample = () => (
       <Route path="/selectaction" component={selectAction} />
       <Route path="/withdrawl" component={WithdrawalForm} />
       <Route path="/otheramount" component={otherAmount} />
+      <Route path="/confirmwithdrawl" component={confirmWithdrawl} />
+      <Route path="/takecard" component={takeCard} />
+      <Route path="/takecash" component={takeCash} />
+      <Route path="/confirmtransfer" component={confirmTransfer} />
     </div>
   </Router>
 );

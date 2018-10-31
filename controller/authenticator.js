@@ -39,13 +39,13 @@ router.post('/', function(req, result) {
                 code: 204,
                 success: err
               });
-            } else {
-              console.log('result lenght is 0');
-              result.send({
-                code: 204,
-                success: 'Email does not exits'
-              });
             }
+          });
+        } else {
+          console.log('result lenght is 0');
+          result.send({
+            code: 204,
+            success: 'Email does not exits'
           });
         }
       }
