@@ -47,7 +47,7 @@ class takeCash extends React.Component {
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
 
           <Button type="submit" variant="contained" color="primary" className="Knapp">
-            <Link to="/login" className="test">
+            <Link to="/finish" className="test">
               Confirm
             </Link>
           </Button>
