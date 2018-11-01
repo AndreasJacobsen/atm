@@ -39,7 +39,7 @@ class otherAmount extends React.Component {
     const { amount, reason } = this.state;
     return (
       <React.Fragment>
-        <h1> To whom and how much do you want to transfer?</h1>
+        <h1> Please enter wanted ammount</h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
           <br />
@@ -67,14 +67,20 @@ class otherAmount extends React.Component {
           />
           <br />
           <br />
-          <Button type="submit" variant="contained" color="primary" className="Knapp">
-            <Link to="/selectaction">Main menu</Link>
-          </Button>
-          <Button type="submit" variant="contained" color="primary" className="Knapp">
-            withdrawl
-          </Button>
+          <div className="container">
+            <Button type="submit" variant="contained" color="secondary" className="floatLeft">
+              <Link to="/selectaction" className="test">
+                Main menu
+              </Link>
+            </Button>
+            <Button type="submit" variant="contained" color="primary" className="floatRight">
+              <Link className="test" to="/confirmwithdrawl">
+                Withdrawl
+              </Link>
+            </Button>
+          </div>
         </form>
-        <p>
+        <p className="marginTop">
           Amount: {this.state.amount} <br />
           Reason: {this.state.reason}
         </p>

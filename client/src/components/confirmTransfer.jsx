@@ -40,20 +40,22 @@ class confirmTransfer extends React.Component {
     const { name, whitdrawal, reason } = this.state;
     return (
       <React.Fragment>
-        <h1>Please confirm the withdrawl</h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
-
-          <Button type="submit" variant="contained" color="primary" className="Knapp">
-            <Link to="/takecard">Confirm</Link>
-          </Button>
-          <br />
-          <br />
-          <Button type="submit" variant="contained" color="secondary" className="Knapp">
-            <Link to="/selectaction">Cancel</Link>
-          </Button>
+          <div className="container">
+            <Button type="submit" variant="contained" color="primary" className="floatRight">
+              <Link to="/takecard" className="test">
+                Confirm
+              </Link>
+            </Button>
+            <Button type="submit" variant="contained" color="secondary" className="floatLeft">
+              <Link to="/selectaction" className="test">
+                Cancel
+              </Link>
+            </Button>
+          </div>
         </form>
       </React.Fragment>
     );

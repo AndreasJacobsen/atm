@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class MoneyForm extends React.Component {
   constructor() {
@@ -83,11 +84,14 @@ class MoneyForm extends React.Component {
             onChange={e => this.handleEvent(e)}
           />
           <br />
+          <br />
           <Button type="submit" variant="contained" color="primary" className="Knapp">
-            Penger
+            <Link to="/confirmtransfer" className="test">
+              Transfer
+            </Link>
           </Button>
         </form>
-        <p>
+        <p className="marginTop">
           Name: {this.state.name} <br />
           Witdhdrawal amount: {this.state.whitdrawal} <br />
           Reason: {this.state.reason}

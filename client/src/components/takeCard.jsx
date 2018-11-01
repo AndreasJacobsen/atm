@@ -41,13 +41,16 @@ class takeCard extends React.Component {
     return (
       <React.Fragment>
         <h1>Please take your card</h1>
+        <h2>See you again!</h2>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
 
           <Button type="submit" variant="contained" color="primary" className="Knapp">
-            <Link to="/takecash">Confirm</Link>
+            <Link to="/" className="test">
+              Confirm
+            </Link>
           </Button>
           <br />
         </form>

@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-class confirmWithdrawl extends React.Component {
+class takeCardTrasnfer extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -40,26 +40,21 @@ class confirmWithdrawl extends React.Component {
     const { name, whitdrawal, reason } = this.state;
     return (
       <React.Fragment>
-        <h1>Please confirm the withdrawl</h1>
+        <h1>Please take your card</h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
-          <div className="container">
-            <Button type="submit" variant="contained" color="primary" className="floatRight">
-              <Link to="/takecash" className="test">
-                Confirm
-              </Link>
-            </Button>
-            <Button type="submit" variant="contained" color="secondary" className="floatLeft">
-              <Link to="/selectaction" className="test">
-                Cancel
-              </Link>
-            </Button>
-          </div>
+
+          <Button type="submit" variant="contained" color="primary" className="Knapp">
+            <Link to="/finish" className="test">
+              Confirm
+            </Link>
+          </Button>
+          <br />
         </form>
       </React.Fragment>
     );
   }
 }
-export default confirmWithdrawl;
+export default takeCardTrasnfer;

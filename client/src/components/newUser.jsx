@@ -251,10 +251,13 @@ class newuser extends React.Component {
             onChange={e => this.handleEvent(e)}
           />
           <br />
+          <br />
+          <br />
           <Button type="submit" variant="contained" color="primary" className="Knapp">
-            Register new user
+            <div class="test">Register new user</div>
           </Button>
         </form>
+        <br />
         <p>
           <h2>User information</h2>
           <Paper>

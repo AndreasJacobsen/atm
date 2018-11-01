@@ -74,8 +74,9 @@ class logIn extends React.Component {
             onChange={e => this.handleEvent(e)}
           />
           <br />
-          <Button type="submit" variant="contained" color="primary" className="Knapp">
-            Log in
+          <br />
+          <Button type="submit" variant="contained" color="primary" className="test">
+            <div className="test">Log in</div>
           </Button>
         </form>
         <p>

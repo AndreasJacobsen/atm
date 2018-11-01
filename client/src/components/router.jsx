@@ -11,6 +11,8 @@ import confirmWithdrawl from './confirmWithdrawl';
 import takeCard from './takeCard';
 import takeCash from './takeCash';
 import confirmTransfer from './confirmTransfer';
+import finish from './finish';
+import takeCardTrasnfer from './takeCardTransfer';
 
 const BasicExample = () => (
   <Router>
@@ -38,13 +40,17 @@ const BasicExample = () => (
             Confirm
           </Link>{' '}
           ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/takecard">
-            Take card
-          </Link>{' '}
-          ->
           <Link style={{ textDecoration: 'none', color: '' }} to="/takecash">
             Take cash
           </Link>
+          ->
+          <Link style={{ textDecoration: 'none', color: '' }} to="/finish">
+            Finish?
+          </Link>
+          ->
+          <Link style={{ textDecoration: 'none', color: '' }} to="/takecard">
+            Take card
+          </Link>{' '}
         </li>
         <b> Case 2: Withdrawl</b>
         <li style={{ listStyle: 'none' }}>
@@ -65,13 +71,13 @@ const BasicExample = () => (
             Confirm
           </Link>
           ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/takecard">
+          <Link style={{ textDecoration: 'none', color: '' }} to="/finish">
+            Finish?
+          </Link>
+          ->
+          <Link style={{ textDecoration: 'none', color: '' }} to="/takecardtransfer">
             Take card
           </Link>{' '}
-          ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/takecash">
-            Take cash
-          </Link>
         </li>
         <b>Admin:</b>
         <li style={{ listStyle: 'none' }}>
@@ -94,6 +100,8 @@ const BasicExample = () => (
       <Route path="/takecard" component={takeCard} />
       <Route path="/takecash" component={takeCash} />
       <Route path="/confirmtransfer" component={confirmTransfer} />
+      <Route path="/finish" component={finish} />
+      <Route path="/takecardtransfer" component={takeCardTrasnfer} />
     </div>
   </Router>
 );

@@ -45,32 +45,6 @@ class WithdrawalForm extends React.Component {
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
           <br />
-
-          <Button variant="contained" color="primary" className="Knapp">
-            200 NOK
-          </Button>
-          <Button variant="contained" color="primary" className="Knapp">
-            300 NOK
-          </Button>
-          <br />
-          <br />
-          <Button variant="contained" color="primary" className="Knapp">
-            400 NOK
-          </Button>
-          <Button variant="contained" color="primary" className="Knapp">
-            500 NOK
-          </Button>
-          <br />
-          <br />
-          <Button variant="contained" color="primary" className="Knapp">
-            700 NOK
-          </Button>
-          <Button variant="contained" color="primary" className="Knapp">
-            1000 NOK
-          </Button>
-
-          <br />
-          <br />
           <TextField
             id="standard-required"
             label="Reason"
@@ -80,13 +54,40 @@ class WithdrawalForm extends React.Component {
             name="reason"
             onChange={e => this.handleEvent(e)}
           />
+          <div className="container">
+            <Button variant="contained" color="primary" className="floatLeft">
+              <div className="test">200 NOK</div>
+            </Button>
+            <Button variant="contained" color="primary" className="floatRight">
+              <div className="test">300 NOK</div>
+            </Button>
+            <br />
+            <br />
+            <Button variant="contained" color="primary" className="floatLeft">
+              <div className="test">400 NOK</div>
+            </Button>
+            <Button variant="contained" color="primary" className="floatRight">
+              <div className="test">500 NOK</div>
+            </Button>
+            <br />
+            <br />
+            <Button variant="contained" color="primary" className="floatLeft">
+              <div className="test"> 700 NOK</div>
+            </Button>
+            <Button variant="contained" color="primary" className="floatRight">
+              <div className="test">1000 NOK</div>
+            </Button>
+          </div>
+
           <br />
           <br />
-
-          <Button variant="contained" color="secondary" className="Knapp">
-            <Link to="/otheramount">Other amount</Link>
-          </Button>
-
+          <div className="marginTop">
+            <Button variant="contained" color="secondary" className="Knapp">
+              <Link to="/otheramount" className="test">
+                Other amount
+              </Link>
+            </Button>
+          </div>
           <br />
           <br />
         </form>
