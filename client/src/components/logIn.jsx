@@ -4,13 +4,15 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import Card from '@material-ui/core/Card';
 
 class logIn extends React.Component {
   constructor() {
     super();
     this.state = {
       cardnumber: '',
-      pin: ''
+      pin: '',
+      servercardnumber: ''
     };
     this.handleEvent = this.handleEvent.bind(this);
     {
@@ -21,21 +23,33 @@ class logIn extends React.Component {
   handleEvent = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     // get our form data out of state
     const { cardnumber, pin } = this.state;
+    const data = { cardnumber, pin };
+    const url = '/api/login';
+    const serverResponse = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const json = await serverResponse.json();
+    console.log(json);
 
-    /*axios.post('/api/login', { cardnumber, pin }).then(result => {
-      console.log(this.cardnumber);
-      console.log(cardnumber);
-    }); */
-
-    /*const request = async () => {
-      const serverResponse = await fetch('http://localhost:5000/api/login');
-      const json = await serverResponse.json();
-      console.log(json);
-    };*/
+    this.setState(
+      prevState => {
+        return {
+          servercardnumber: json.cardnumber
+        };
+      },
+      () => {
+        console.log(this.state.cardnumber);
+      }
+    );
 
     // request();
   };
@@ -44,6 +58,7 @@ class logIn extends React.Component {
     const { cardnumber, pin } = this.state;
     return (
       <React.Fragment>
+        <Card>{this.state.servercardnumber !== '' ? <Card> Data is there</Card> : null}</Card>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <h1> Log in</h1>
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
@@ -90,6 +105,7 @@ class logIn extends React.Component {
         <p>
           Cardnumber: {this.state.cardnumber} <br />
           pin-code: {this.state.pin} <br />
+          servercode: {this.state.servercardnumber}
         </p>
       </React.Fragment>
     );
