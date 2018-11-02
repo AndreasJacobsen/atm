@@ -26,10 +26,18 @@ class logIn extends React.Component {
     // get our form data out of state
     const { cardnumber, pin } = this.state;
 
-    axios.post('/api/login', { cardnumber, pin }).then(result => {
+    /*axios.post('/api/login', { cardnumber, pin }).then(result => {
       console.log(this.cardnumber);
       console.log(cardnumber);
-    });
+    }); */
+
+    /*const request = async () => {
+      const serverResponse = await fetch('http://localhost:5000/api/login');
+      const json = await serverResponse.json();
+      console.log(json);
+    };*/
+
+    // request();
   };
 
   render() {
