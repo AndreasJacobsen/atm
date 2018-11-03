@@ -12,7 +12,7 @@ class logIn extends React.Component {
     this.state = {
       cardnumber: '',
       pin: '',
-      servercardnumber: ''
+      servercardnumber: 'null'
     };
     this.handleEvent = this.handleEvent.bind(this);
     {
@@ -33,7 +33,9 @@ class logIn extends React.Component {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true
       },
       body: JSON.stringify(data)
     });

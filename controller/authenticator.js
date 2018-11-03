@@ -27,7 +27,8 @@ router.post('/', function(req, result) {
           } else if (res == false) {
             console.log('something went wrong/email and password does not match');
             console.log(err);
-            result.status(204);
+            result.status(200);
+            result.json({ message: false });
           } else {
             console.log('result lenght is 0');
           }
