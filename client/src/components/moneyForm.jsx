@@ -1,5 +1,4 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -10,34 +9,28 @@ class MoneyForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: '',
-      whitdrawal: '',
-      reason: ''
+      transferAmount: '',
+      transferNumber: ''
     };
-    this.handleEvent = this.handleEvent.bind(this);
-    {
-      /* check if can be removed */
-    }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleEvent = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.transferAmount]: e.target.value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
     // get our form data out of state
-    const { name, whitdrawal, reason } = this.state;
+    const { transferAmount, transferNumber } = this.state;
 
-    axios.post('/api/formdata', { name, whitdrawal, reason }).then(result => {
-      console.log(this.name);
-      console.log(result.name);
+    axios.post('/api/formdata', { transferAmount, transferNumber }).then(result => {
+      console.log(this.transferAmount);
     });
   };
 
   render() {
-    const { name, whitdrawal, reason } = this.state;
+    const { transferAmount, transferNumber } = this.state;
     return (
       <React.Fragment>
         <h1> To whom and how much do you want to transfer?</h1>
@@ -45,42 +38,38 @@ class MoneyForm extends React.Component {
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
-          <TextField
-            required
-            id="standard-required"
-            label="Navn"
-            className="tekstfelt"
-            margin="normal"
-            defaultvalue={name}
-            name="name"
-            onChange={e => this.handleEvent(e)}
-          />
           <br />
           <TextField
             required
             id="standard-required"
-            label="Witdhdrawal amount"
+            label="Transfer amount"
             className="tekstfelt"
             margin="normal"
             type="number"
-            defaultvalue={whitdrawal}
+            defaultvalue={transferAmount}
             onInput={e => {
               e.target.value = Math.max(0, parseInt(e.target.value))
                 .toString()
                 .slice(0, 4);
             }}
-            name="whitdrawal"
+            name="transferAmount"
             onChange={e => this.handleEvent(e)}
           />
           <br />
           <TextField
             required
             id="standard-required"
-            label="Reason"
+            label="Reciver accountnumber"
             className="tekstfelt"
             margin="normal"
-            defaultvalue={reason}
-            name="reason"
+            type="number"
+            defaultvalue={transferNumber}
+            onInput={e => {
+              e.target.value = Math.max(0, parseInt(e.target.value))
+                .toString()
+                .slice(0, 12);
+            }}
+            name="transferNumber"
             onChange={e => this.handleEvent(e)}
           />
           <br />
@@ -92,9 +81,8 @@ class MoneyForm extends React.Component {
           </Button>
         </form>
         <p className="marginTop">
-          Name: {this.state.name} <br />
-          Witdhdrawal amount: {this.state.whitdrawal} <br />
-          Reason: {this.state.reason}
+          Transfer amount: {this.state.transferAmount} <br />
+          Reciver accountnumber: {this.state.transferNumber}
         </p>
       </React.Fragment>
     );

@@ -1,9 +1,7 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
 import Card from '@material-ui/core/Card';
 
 class logIn extends React.Component {
@@ -16,10 +14,7 @@ class logIn extends React.Component {
         message: ''
       }
     };
-    this.handleEvent = this.handleEvent.bind(this);
-    {
-      /* check if can be removed */
-    }
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleEvent = e => {
