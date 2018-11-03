@@ -1,5 +1,4 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -10,33 +9,28 @@ class otherAmount extends React.Component {
   constructor() {
     super();
     this.state = {
-      amount: '',
-      reason: ''
+      ammount: ''
     };
-    this.handleEvent = this.handleEvent.bind(this);
-    {
-      /* check if can be removed */
-    }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleEvent = e => {
-    this.setState({ [e.target.amount]: e.target.value });
+    this.setState({ [e.target.ammount]: e.target.value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
     // get our form data out of state
-    const { amount, reason } = this.state;
+    const { ammount } = this.state;
 
-    axios.post('/api/formdata', { amount, reason }).then(result => {
-      console.log(this.amount);
-      console.log(result.amount);
+    axios.post('/api/formdata', { ammount }).then(result => {
+      console.log(this.ammount);
+      console.log(result.ammount);
     });
   };
 
   render() {
-    const { amount, reason } = this.state;
+    const { ammount } = this.state;
     return (
       <React.Fragment>
         <h1> Please enter wanted ammount</h1>
@@ -50,19 +44,14 @@ class otherAmount extends React.Component {
             label="Ammount to withdrawl"
             className="tekstfelt"
             margin="normal"
-            defaultvalue={amount}
-            name="amount"
-            onChange={e => this.handleEvent(e)}
-          />
-
-          <br />
-          <TextField
-            id="standard-required"
-            label="Reason"
-            className="tekstfelt"
-            margin="normal"
-            defaultvalue={reason}
-            name="reason"
+            defaultValue={ammount}
+            onInput={e => {
+              e.target.value = Math.max(0, parseInt(e.target.value))
+                .toString()
+                .slice(0, 4);
+            }}
+            name="ammount"
+            type="number"
             onChange={e => this.handleEvent(e)}
           />
           <br />
@@ -81,8 +70,7 @@ class otherAmount extends React.Component {
           </div>
         </form>
         <p className="marginTop">
-          Amount: {this.state.amount} <br />
-          Reason: {this.state.reason}
+          Amount: {this.state.ammount} <br />
         </p>
       </React.Fragment>
     );

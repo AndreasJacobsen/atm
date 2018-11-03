@@ -1,8 +1,6 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../static/selectAction.css';
@@ -11,18 +9,16 @@ class selectAction extends React.Component {
   constructor() {
     super();
     this.state = {
-      cardnumber: '',
-      pin: ''
+      loggedIn: true
     };
-    this.handleEvent = this.handleEvent.bind(this);
-    {
-      /* check if can be removed */
-    }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleEvent = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  onClick = () => {
+    this.setState({
+      loggedIn: false
+    });
   };
+
   handleSubmit = e => {
     e.preventDefault();
     // get our form data out of state
@@ -35,7 +31,7 @@ class selectAction extends React.Component {
   };
 
   render() {
-    const { cardnumber, pin } = this.state;
+    const { loggedIn } = this.state;
     return (
       <React.Fragment>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
@@ -58,7 +54,7 @@ class selectAction extends React.Component {
         <br />
         <div className="marginTop">
           <Button variant="contained" color="secondary" className="">
-            <Link to="/" className="test">
+            <Link to="/" className="test" defaultValue={loggedIn} onClick={this.onClick}>
               Log out
             </Link>
           </Button>

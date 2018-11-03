@@ -183,7 +183,7 @@ class newuser extends React.Component {
           />
           <br />
           <h2> Card info:</h2>
-          <Select value={this.state.type} onChange={this.handleChange}>
+          <Select value={this.state.type} defaultValue={type} onChange={this.handleChange}>
             <MenuItem value="visa">Visa</MenuItem>
             <MenuItem value="mastercard">Mastercard</MenuItem>
           </Select>
@@ -246,7 +246,6 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={expirationDate}
             name="expirationDate"
-            defaultValue="2021-01-24"
             type="date"
             onChange={e => this.handleEvent(e)}
           />
