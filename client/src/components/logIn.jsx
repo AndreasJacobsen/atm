@@ -12,7 +12,9 @@ class logIn extends React.Component {
     this.state = {
       cardnumber: '',
       pin: '',
-      servercardnumber: 'null'
+      servercardnumber: {
+        message: ''
+      }
     };
     this.handleEvent = this.handleEvent.bind(this);
     {
@@ -45,22 +47,22 @@ class logIn extends React.Component {
     this.setState(
       prevState => {
         return {
-          servercardnumber: json.cardnumber
+          servercardnumber: json.message
         };
       },
       () => {
         console.log(this.state.cardnumber);
       }
     );
-
-    // request();
   };
 
   render() {
-    const { cardnumber, pin } = this.state;
+    const { cardnumber, pin, servercardnumber } = this.state;
     return (
       <React.Fragment>
-        <Card>{this.state.servercardnumber !== '' ? <Card> Data is there</Card> : null}</Card>
+        <Card>{!servercardnumber ? <Card> Server says no</Card> : null}</Card>
+        {console.log('server says:')}
+        {console.log(servercardnumber)}
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <h1> Log in</h1>
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
@@ -107,7 +109,6 @@ class logIn extends React.Component {
         <p>
           Cardnumber: {this.state.cardnumber} <br />
           pin-code: {this.state.pin} <br />
-          servercode: {this.state.servercardnumber}
         </p>
       </React.Fragment>
     );
