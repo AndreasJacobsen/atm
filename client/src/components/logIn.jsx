@@ -14,8 +14,7 @@ class logIn extends React.Component {
       servercardnumber: {
         message: '',
         status: ''
-      },
-      loggedIn: ''
+      }
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,6 +43,7 @@ class logIn extends React.Component {
 
     this.setState(
       prevState => {
+        sessionStorage.setItem('cardnumber', json.message);
         return {
           servercardnumber: json.message,
           status: json.status
@@ -59,7 +59,6 @@ class logIn extends React.Component {
     const { cardnumber, pin, status } = this.state;
     return (
       <React.Fragment>
-        {/* If statusfrom server is true, then redirect */}
         {status ? <Redirect to="/moneyform" /> : null}
         {console.log('server says:')}
         {console.log(status)}
