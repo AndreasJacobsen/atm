@@ -3,39 +3,45 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+
 class WithdrawalForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      ammount: ''
+      amount: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  onClick = () => {
-    this.setState({
-      ammount: this.state.ammount
-    });
+  setAmount = amount => {
+    return event => {
+      this.setState({ amount });
+    };
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    // get our form data out of state
-    const { ammount } = this.state;
+    const { amount } = this.state;
 
-    axios.post('/api/formdata', { ammount }).then(result => {
-      console.log(this.ammount);
-      console.log(result.ammount);
+    // get our form data out of state
+    const serverCardNumber = sessionStorage.getItem('cardnumber');
+
+    axios({
+      method: 'post',
+      url: '/api/whidrawal',
+      data: {
+        amount,
+        serverCardNumber
+      }
     });
   };
 
   render() {
-    const { ammount } = this.state;
+    const { amount } = this.state;
     return (
       <React.Fragment>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <h1>How much do you want to withdraw?</h1>
-        <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
+        <form onSubmit={this.handleSubmit} method="POST" action="/api/whidrawaly">
           <br />
           {/* Bytt ut med CSS block elementer eller wwnoe slikt, bytt name på form fields til å hentes via JS  */}
           <br />
@@ -43,24 +49,24 @@ class WithdrawalForm extends React.Component {
             <Button
               type="submit"
               variant="contained"
-              onClick={this.onClick}
+              onClick={this.setAmount(200)}
               value="200"
               color="primary"
               className="floatLeft"
-              defaultValue={ammount}
-              name="ammount"
+              defaultValue={amount}
+              name="amount"
             >
               <div className="test">200 NOK</div>
             </Button>
             <Button
               type="submit"
               variant="contained"
-              onClick={this.onClick}
+              onClick={this.setAmount(300)}
               value="300"
               color="primary"
               className="floatRight"
-              defaultValue={ammount}
-              name="ammount"
+              defaultValue={amount}
+              name="amount"
             >
               <div className="test">300 NOK</div>
             </Button>
@@ -69,24 +75,24 @@ class WithdrawalForm extends React.Component {
             <Button
               type="submit"
               variant="contained"
-              onClick={this.onClick}
+              onClick={this.setAmount(400)}
               value="400"
               color="primary"
               className="floatLeft"
-              defaultValue={ammount}
-              name="ammount"
+              defaultValue={amount}
+              name="amount"
             >
               <div className="test">400 NOK</div>
             </Button>
             <Button
               type="submit"
               variant="contained"
-              onClick={this.onClick}
+              onClick={this.setAmount(500)}
               value="500"
               color="primary"
               className="floatRight"
-              defaultValue={ammount}
-              name="ammount"
+              defaultValue={amount}
+              name="amount"
             >
               <div className="test">500 NOK</div>
             </Button>
@@ -95,29 +101,28 @@ class WithdrawalForm extends React.Component {
             <Button
               type="submit"
               variant="contained"
-              onClick={this.onClick}
+              onClick={this.setAmount(700)}
               value="700"
               color="primary"
               className="floatLeft"
-              defaultValue={ammount}
-              name="ammount"
+              defaultValue={amount}
+              name="amount"
             >
               <div className="test"> 700 NOK</div>
             </Button>
             <Button
               type="submit"
               variant="contained"
-              onClick={this.onClick}
+              onClick={this.setAmount(1000)}
               value="1000"
               color="primary"
               className="floatRight"
-              defaultValue={ammount}
+              defaultValue={amount}
               name="amount"
             >
               <div className="test">1000 NOK</div>
             </Button>
           </div>
-
           <br />
           <br />
           <div className="marginTop">

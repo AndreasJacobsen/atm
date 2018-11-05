@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const newUser = require('./controller/newUserRouter.js');
 const authenticator = require('./controller/authenticator');
+const whidrawal = require('./controller/whidrawal');
 
 // Dataparser, parsing data from react front end to Json
 app.use(
@@ -25,5 +26,6 @@ app.use(function(req, res, next) {
 // Router endpoint to retrive data from front end, also inserts data into DB via NewUser.js
 app.use('/api/newUser', newUser);
 app.use('/api/login', authenticator);
+app.use('/api/whidrawal', whidrawal);
 // Defines server port number, set to 5000 for back end and 3000 for front end.
 app.listen(port, () => console.log(`Back end is listening on port ${port}`));
