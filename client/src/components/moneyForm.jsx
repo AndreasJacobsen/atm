@@ -86,6 +86,7 @@ class MoneyForm extends React.Component {
         <p className="marginTop">
           Transfer amount: {this.state.transferAmount} <br />
           Reciver accountnumber: {this.state.transferNumber}
+          Cardnumber: {sessionStorage.getItem('cardnumber')}
         </p>
       </React.Fragment>
     );
