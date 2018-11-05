@@ -26,6 +26,9 @@ class takeCardTrasnfer extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <div>
+          Select action -> Transfer -> Confirm -> Finished? -> <b>Take card</b>
+        </div>
         <h1>Please take your card</h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">

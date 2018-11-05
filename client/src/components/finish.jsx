@@ -26,6 +26,10 @@ class finish extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <div>
+          Select action -> Withdraw/transfer -> Confirm -> <b>Finished? -></b> Take card{' '}
+        </div>
+        <h1>Transaction completed</h1>
         <h1>Are you finished?</h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">

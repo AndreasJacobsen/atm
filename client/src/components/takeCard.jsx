@@ -24,6 +24,9 @@ class takeCard extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <div>
+          Select action -> Withdraw -> Confirm -> Take cash -> Finished? -> <b>Take card</b>
+        </div>
         <h1>Please take your card</h1>
         <h2>See you again!</h2>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}

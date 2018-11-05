@@ -26,13 +26,17 @@ class confirmTransfer extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <div>
+          Select action -> Transfer -> <b>Confirm -></b> Finished? -> Take card
+        </div>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
+          <h1>Please confirm trasnfer ammount and reciver account</h1>
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
           <div className="container">
             <Button type="submit" variant="contained" color="primary" className="floatRight">
-              <Link to="/takecard" className="test">
+              <Link to="/finish" className="test">
                 Confirm
               </Link>
             </Button>

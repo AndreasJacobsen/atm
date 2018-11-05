@@ -33,6 +33,9 @@ class MoneyForm extends React.Component {
     const { transferAmount, transferNumber } = this.state;
     return (
       <React.Fragment>
+        <div>
+          Select action -> <b>Transfer -></b> Confirm -> Finished? -> Take card
+        </div>
         <h1> To whom and how much do you want to transfer?</h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">

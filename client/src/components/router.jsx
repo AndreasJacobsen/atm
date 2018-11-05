@@ -5,9 +5,9 @@ import logIn from './logIn';
 import newuser from './newUser';
 import AllUsers from './allUsers';
 import selectAction from './selectAction';
-import WithdrawalForm from './withdrawlForm';
+import WithdrawalForm from './withdrawForm';
 import otherAmount from './otherAmount';
-import confirmWithdrawl from './confirmWithdrawl';
+import confirmWithdraw from './confirmWithdraw';
 import takeCard from './takeCard';
 import takeCash from './takeCash';
 import confirmTransfer from './confirmTransfer';
@@ -18,7 +18,7 @@ const BasicExample = () => (
   <Router>
     <div>
       <ul>
-        <b>Case 1: Withdrawl</b>
+        <b>Case 1: Withdraw</b>
         <li style={{ listStyle: 'none' }}>
           <Link style={{ textDecoration: 'none', color: '' }} to="/">
             Log in
@@ -28,15 +28,15 @@ const BasicExample = () => (
             Select action
           </Link>{' '}
           ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/withdrawl">
-            Withdrawl form
+          <Link style={{ textDecoration: 'none', color: '' }} to="/withdraw">
+            Withdraw form
           </Link>{' '}
           ->
           <Link style={{ textDecoration: 'none', color: '' }} to="/otheramount">
             Other ammount
           </Link>
           ->
-          <Link style={{ textDecoration: 'none', color: '' }} to="/confirmwithdrawl">
+          <Link style={{ textDecoration: 'none', color: '' }} to="/confirmwithdraw">
             Confirm
           </Link>{' '}
           ->
@@ -52,7 +52,7 @@ const BasicExample = () => (
             Take card
           </Link>{' '}
         </li>
-        <b> Case 2: Withdrawl</b>
+        <b> Case 2: Withdraw</b>
         <li style={{ listStyle: 'none' }}>
           <Link style={{ textDecoration: 'none', color: '' }} to="/">
             Log in
@@ -94,9 +94,9 @@ const BasicExample = () => (
       <Route path="/newuser" component={newuser} />
       <Route path="/allusers" component={AllUsers} />
       <Route path="/selectaction" component={selectAction} />
-      <Route path="/withdrawl" component={WithdrawalForm} />
+      <Route path="/withdraw" component={WithdrawalForm} />
       <Route path="/otheramount" component={otherAmount} />
-      <Route path="/confirmwithdrawl" component={confirmWithdrawl} />
+      <Route path="/confirmwithdraw" component={confirmWithdraw} />
       <Route path="/takecard" component={takeCard} />
       <Route path="/takecash" component={takeCash} />
       <Route path="/confirmtransfer" component={confirmTransfer} />
