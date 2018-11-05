@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-class confirmWithdrawl extends React.Component {
+class confirmWithdraw extends React.Component {
   constructor() {
     super();
     this.state = {};
@@ -25,7 +25,10 @@ class confirmWithdrawl extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Please confirm the withdrawl</h1>
+        <div>
+          Select action -> Withdraw -> <b>Confirm -></b> Take cash -> Finished? -> Take card{' '}
+        </div>
+        <h1>Please confirm the withdraw</h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
           <br />
@@ -47,4 +50,4 @@ class confirmWithdrawl extends React.Component {
     );
   }
 }
-export default confirmWithdrawl;
+export default confirmWithdraw;

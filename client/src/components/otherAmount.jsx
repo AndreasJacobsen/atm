@@ -33,6 +33,10 @@ class otherAmount extends React.Component {
     const { ammount } = this.state;
     return (
       <React.Fragment>
+        <div>
+          Select action ->
+          <b>Withdraw -></b> Confirm -> Take cash -> Finished? -> Take card{' '}
+        </div>{' '}
         <h1> Please enter wanted ammount</h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
@@ -41,7 +45,7 @@ class otherAmount extends React.Component {
           <TextField
             required
             id="standard-required"
-            label="Ammount to withdrawl"
+            label="Ammount to withdraw"
             className="tekstfelt"
             margin="normal"
             defaultValue={ammount}
@@ -63,8 +67,8 @@ class otherAmount extends React.Component {
               </Link>
             </Button>
             <Button type="submit" variant="contained" color="primary" className="floatRight">
-              <Link className="test" to="/confirmwithdrawl">
-                Withdrawl
+              <Link className="test" to="/confirmwithdraw">
+                Withdraw
               </Link>
             </Button>
           </div>

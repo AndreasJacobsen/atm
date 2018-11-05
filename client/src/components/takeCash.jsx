@@ -26,6 +26,9 @@ class takeCash extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <div>
+          Select action -> Withdraw -> Confirm -> <b>Take cash -></b> Finished? -> Take card{' '}
+        </div>
         <h1>Please take your cash</h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">

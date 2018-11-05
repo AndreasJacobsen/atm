@@ -39,6 +39,10 @@ class WithdrawalForm extends React.Component {
     const { amount } = this.state;
     return (
       <React.Fragment>
+        <div>
+          Select action ->
+          <b>Withdraw -></b> Confirm -> Take cash -> Finished? -> Take card{' '}
+        </div>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <h1>How much do you want to withdraw?</h1>
         <form onSubmit={this.handleSubmit} method="POST" action="/api/whidrawaly">

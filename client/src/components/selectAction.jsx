@@ -40,8 +40,8 @@ class selectAction extends React.Component {
         <div className="container">
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
           <Button variant="contained" color="primary" className="floatLeft">
-            <Link to="/withdrawl" className="test">
-              Withdrawl money
+            <Link to="/withdraw" className="test">
+              Withdraw money
             </Link>
           </Button>
           <Button variant="contained" color="primary" className="floatRight">
