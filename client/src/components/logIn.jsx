@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
+import { Route, Redirect } from 'react-router';
 
 class logIn extends React.Component {
   constructor() {
@@ -11,8 +12,10 @@ class logIn extends React.Component {
       cardnumber: '',
       pin: '',
       servercardnumber: {
-        message: ''
-      }
+        message: '',
+        status: ''
+      },
+      loggedIn: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,7 +45,8 @@ class logIn extends React.Component {
     this.setState(
       prevState => {
         return {
-          servercardnumber: json.message
+          servercardnumber: json.message,
+          status: json.status
         };
       },
       () => {
@@ -52,12 +56,13 @@ class logIn extends React.Component {
   };
 
   render() {
-    const { cardnumber, pin, servercardnumber } = this.state;
+    const { cardnumber, pin, status } = this.state;
     return (
       <React.Fragment>
-        <Card>{!servercardnumber ? <Card> Server says no</Card> : null}</Card>
+        {/* If statusfrom server is true, then redirect */}
+        {status ? <Redirect to="/moneyform" /> : null}
         {console.log('server says:')}
-        {console.log(servercardnumber)}
+        {console.log(status)}
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <h1> Log in</h1>
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">

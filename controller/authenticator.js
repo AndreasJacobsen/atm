@@ -23,22 +23,20 @@ router.post('/', function(req, result) {
           if (res) {
             console.log('login succefull');
             result.status(200);
-            result.json({ message: results[0].CardNumber });
+            result.json({ message: results[0].CardNumber, status: true });
           } else if (res == false) {
             console.log('something went wrong/email and password does not match');
             console.log(err);
             result.status(200);
-            result.json({ message: false });
+            result.json({ message: false, status: false });
           } else {
             console.log('result lenght is 0');
           }
         });
       } else {
         console.log('result lenght is 0');
-        result.json({
-          code: 204,
-          success: 'No results found'
-        });
+        result.status(200);
+        result.json({ message: false, status: false });
       }
     }
   );
