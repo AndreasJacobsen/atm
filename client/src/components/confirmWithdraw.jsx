@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from 'axios';
 
-
 class confirmWithdraw extends React.Component {
   constructor() {
     super();
