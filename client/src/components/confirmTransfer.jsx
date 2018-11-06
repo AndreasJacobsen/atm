@@ -19,8 +19,18 @@ class confirmTransfer extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     // get our form data out of state
-
-    axios.post('/api/transfere', {}).then(result => {});
+    const transfereAmount = sessionStorage.getItem('transfereAmount');
+    const transfereNumber = sessionStorage.getItem('transfereNumber');
+    const bankNumber = sessionStorage.getItem('cardnumber');
+    axios({
+      method: 'post',
+      url: '/api/transfere',
+      data: {
+        transfereAmount,
+        transfereNumber,
+        bankNumber
+      }
+    }).then(this.props.history.push('/finish'));
   };
 
   render() {
@@ -31,14 +41,16 @@ class confirmTransfer extends React.Component {
         </div>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
-          <h1>Please confirm trasnfer ammount and reciver account</h1>
+          <h2>
+            Please confirm the withdraw of {sessionStorage.getItem('transfereAmount')} NOK to
+            account
+            {' ' + sessionStorage.getItem('transfereNumber')}
+          </h2>
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
           <div className="container">
             <Button type="submit" variant="contained" color="primary" className="floatRight">
-              <Link to="/finish" className="test">
-                Confirm
-              </Link>
+              Confirm
             </Button>
             <Button type="submit" variant="contained" color="secondary" className="floatLeft">
               <Link to="/selectaction" className="test">

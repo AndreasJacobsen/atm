@@ -16,17 +16,15 @@ class MoneyForm extends React.Component {
   }
 
   handleEvent = e => {
-    this.setState({ [e.target.transferAmount]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
     // get our form data out of state
-    const { transferAmount, transferNumber } = this.state;
-
-    axios.post('/api/transfere', { transferAmount, transferNumber }).then(result => {
-      console.log(this.transferAmount);
-    });
+    sessionStorage.setItem('transfereAmount', this.state.transferAmount);
+    sessionStorage.setItem('transfereNumber', this.state.transferNumber);
+    this.props.history.push('/confirmtransfer');
   };
 
   render() {

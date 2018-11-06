@@ -12,10 +12,30 @@ function transfereMoney(bankNumber, reciverBankNumber, transfereAmount) {
       }
     }
   );
-  function setValue(value) {
+  function setValue(value, res) {
     userAccount = value;
+    const ownBalance = userAccount[0].Balance;
     console.log('userAccount is: ', userAccount);
     console.log('userAccount is: ', userAccount[0].BankNumber);
+    if (ownBalance > transfereAmount) {
+      console.log('you have nuff moneiz');
+      connection.query(
+        "UPDATE userCards SET balance = balance - '" +
+          transfereAmount +
+          "' WHERE BankNumber = '" +
+          bankNumber +
+          "'"
+      );
+      connection.query(
+        "UPDATE userCards SET balance = balance + '" +
+          transfereAmount +
+          "' WHERE BankNumber = '" +
+          reciverBankNumber +
+          "'"
+      );
+    } else {
+      console.log("you don't have nuff moneiz");
+    }
   }
 }
 module.exports = transfereMoney;
