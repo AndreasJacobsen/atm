@@ -18,8 +18,16 @@ class confirmWithdraw extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    axios.post('/api/formdata', {}).then(result => {});
+    const amount = sessionStorage.getItem('amount');
+    const serverCardNumber = sessionStorage.getItem('cardnumber');
+    axios({
+      method: 'post',
+      url: '/api/whidrawal',
+      data: {
+        amount,
+        serverCardNumber
+      }
+    });
   };
 
   render() {
@@ -28,21 +36,18 @@ class confirmWithdraw extends React.Component {
         <div>
           Select action -> Withdraw -> <b>Confirm -></b> Take cash -> Finished? -> Take card{' '}
         </div>
-        <h1>Please confirm the withdraw</h1>
+        <div>{sessionStorage.getItem('amount')}</div>
+        <h1>Please confirm the withdraw of {sessionStorage.getItem('amount')} NOK </h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
-        <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
+        <form onSubmit={this.handleSubmit}>
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
           <div className="container">
             <Button type="submit" variant="contained" color="primary" className="floatRight">
-              <Link to="/takecash" className="test">
-                Confirm
-              </Link>
+              Confirm
             </Button>
             <Button type="submit" variant="contained" color="secondary" className="floatLeft">
-              <Link to="/selectaction" className="test">
-                Cancel
-              </Link>
+              Cancel
             </Button>
           </div>
         </form>

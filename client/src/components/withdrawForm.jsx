@@ -15,24 +15,13 @@ class WithdrawalForm extends React.Component {
   setAmount = amount => {
     return event => {
       this.setState({ amount });
+      sessionStorage.setItem('amount', amount);
     };
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    const { amount } = this.state;
-
     // get our form data out of state
-    const serverCardNumber = sessionStorage.getItem('cardnumber');
-
-    axios({
-      method: 'post',
-      url: '/api/whidrawal',
-      data: {
-        amount,
-        serverCardNumber
-      }
-    });
   };
 
   render() {
