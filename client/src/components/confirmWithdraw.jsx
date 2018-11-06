@@ -2,11 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from 'axios';
-<<<<<<< HEAD
-import { Redirect } from 'react-router';
-=======
->>>>>>> 18c87d06da05eb1aa01571a4bf2b4fce515bb610
-import { withRouter } from 'react-router';
+
 
 class confirmWithdraw extends React.Component {
   constructor() {
@@ -33,11 +29,7 @@ class confirmWithdraw extends React.Component {
         amount,
         serverCardNumber
       }
-<<<<<<< HEAD
-    }).then(() => this.props.history.push('/moneyform'));
-=======
     }).then(this.props.history.push('/takecash'));
->>>>>>> 18c87d06da05eb1aa01571a4bf2b4fce515bb610
   };
 
   render() {
