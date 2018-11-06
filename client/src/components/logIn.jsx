@@ -1,41 +1,67 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
+import Card from '@material-ui/core/Card';
+import { Route, Redirect } from 'react-router';
 
 class logIn extends React.Component {
   constructor() {
     super();
     this.state = {
       cardnumber: '',
-      pin: ''
+      pin: '',
+      servercardnumber: {
+        message: '',
+        status: ''
+      }
     };
-    this.handleEvent = this.handleEvent.bind(this);
-    {
-      /* check if can be removed */
-    }
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleEvent = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     // get our form data out of state
     const { cardnumber, pin } = this.state;
-
-    axios.post('/api/login', { cardnumber, pin }).then(result => {
-      console.log(this.cardnumber);
-      console.log(cardnumber);
+    const data = { cardnumber, pin };
+    const url = '/api/login';
+    const serverResponse = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true
+      },
+      body: JSON.stringify(data)
     });
+    const json = await serverResponse.json();
+    console.log(json);
+
+    this.setState(
+      prevState => {
+        sessionStorage.setItem('cardnumber', json.message);
+        return {
+          servercardnumber: json.message,
+          status: json.status
+        };
+      },
+      () => {
+        console.log(this.state.cardnumber);
+      }
+    );
   };
 
   render() {
-    const { cardnumber, pin } = this.state;
+    const { cardnumber, pin, status } = this.state;
     return (
       <React.Fragment>
+        {status ? <Redirect to="/selectaction" /> : null}
+        {console.log('server says:')}
+        {console.log(status)}
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <h1> Log in</h1>
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
@@ -74,8 +100,9 @@ class logIn extends React.Component {
             onChange={e => this.handleEvent(e)}
           />
           <br />
-          <Button type="submit" variant="contained" color="primary" className="Knapp">
-            Log in
+          <br />
+          <Button type="submit" variant="contained" color="primary" className="test">
+            <div className="test">Log in</div>
           </Button>
         </form>
         <p>

@@ -1,16 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 5000;
-const AtmUser = require('./models/atmuser');
-
-// Connection data to MongoDB databas
-mongoose.Promise = global.Promise;
-mongoose.connect(
-  'mongodb://localhost:27017/atm',
-  { useNewUrlParser: true }
-);
+const newUser = require('./controller/newUserRouter.js');
+const authenticator = require('./controller/authenticator');
+const whidrawal = require('./controller/whidrawal');
 
 // Dataparser, parsing data from react front end to Json
 app.use(
@@ -18,63 +12,20 @@ app.use(
     extended: true
   })
 );
-
+// Morgan does logging
+app.use(require('morgan')('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
 // Use the parson in the app
 app.use(bodyParser.json());
-
-
-// Get POST values from /api/formdata endpoint, data is sent from client.
-app.post('/api/formdata', function(req) {
-  const newWhitdrwal = AtmUser({
-    name: req.body.name,
-    whitdrawal:[
-      {amount : req.body.whitdrawal}
-    ],
-    reason: req.body.reason
-  });
-  // save the user
-  newWhitdrwal.save(function(err) {
-    if (err) throw err;
-
-    console.log('User successfully updated!');
-  });
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
 });
 
-app.post('/api/newUser', function(req) {
-  const newUser = AtmUser({
-    name: req.body.name, 
-    balance: req.body.balance, 
-    address: req.body.address,
-    ssn: req.body.ssn, 
-    bankNumber: req.body.bankNumber,
-    cards: [
-      { 
-        formType: req.body.type, // Visa eller Mastercard
-        cardNumber: req.body.cardNumber,
-        cvc: req.body.cvc,
-        expirationDate: req.body.expirationDate,
-        pin: req.body.pin,
-      }
-    ],
-  });
-
-  newUser.save(function(err) {
-    if(err) throw err; 
-    console.log('A new user has been made')
-  })
-})
-
-// Show data as JSON at /api/showFormData
-app.get('/api/showFormData', function(req, res) {
-  AtmUser.find({}, function(err, users) {
-    if (err) throw err;
-    console.log('User succefully created');
-    res.send({ users });
-  });
-});
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Denne meldingen kommer fra Express.js backend' });
-});
-
+// Router endpoint to retrive data from front end, also inserts data into DB via NewUser.js
+app.use('/api/newUser', newUser);
+app.use('/api/login', authenticator);
+app.use('/api/whidrawal', whidrawal);
 // Defines server port number, set to 5000 for back end and 3000 for front end.
 app.listen(port, () => console.log(`Back end is listening on port ${port}`));

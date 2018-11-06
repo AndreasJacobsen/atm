@@ -4,6 +4,9 @@ This system is build using Express.js as back end and React.js as front end.
 
 All interaction between back end and front end is done via API calls.
 
+### Notice
+This project was done as part of a school assignment, it is in not secure or robust enough to use in *any* production enviourment, please only use this for learning. 
+
 ## Installation
 
 ### Dependencies outside of package.json

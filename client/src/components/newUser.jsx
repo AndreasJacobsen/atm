@@ -1,5 +1,4 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -17,7 +16,8 @@ class newuser extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: '',
+      Fname: '',
+      Lname: '',
       balance: '',
       address: '',
       ssn: '',
@@ -42,7 +42,8 @@ class newuser extends React.Component {
     e.preventDefault();
     // get our form data out of state
     const {
-      name,
+      Fname,
+      Lname,
       balance,
       address,
       ssn,
@@ -56,7 +57,8 @@ class newuser extends React.Component {
 
     axios
       .post('/api/newUser', {
-        name,
+        Fname,
+        Lname,
         balance,
         address,
         ssn,
@@ -75,7 +77,8 @@ class newuser extends React.Component {
 
   render() {
     const {
-      name,
+      Fname,
+      Lname,
       balance,
       address,
       ssn,
@@ -95,12 +98,24 @@ class newuser extends React.Component {
           <TextField
             required
             id="standard-required"
-            label="Name"
+            label="First name"
             className="tekstfelt"
             margin="normal"
-            defaultValue={name}
+            defaultValue={Fname}
             type="text"
-            name="name"
+            name="Fname"
+            onChange={e => this.handleEvent(e)}
+          />
+          <br />
+          <TextField
+            required
+            id="standard-required"
+            label="Last name"
+            className="tekstfelt"
+            margin="normal"
+            defaultValue={Lname}
+            type="text"
+            name="Fname"
             onChange={e => this.handleEvent(e)}
           />
           <br />
@@ -168,7 +183,7 @@ class newuser extends React.Component {
           />
           <br />
           <h2> Card info:</h2>
-          <Select value={this.state.type} onChange={this.handleChange}>
+          <Select value={this.state.type} defaultValue={type} onChange={this.handleChange}>
             <MenuItem value="visa">Visa</MenuItem>
             <MenuItem value="mastercard">Mastercard</MenuItem>
           </Select>
@@ -231,22 +246,25 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={expirationDate}
             name="expirationDate"
-            defaultValue="2021-01-24"
             type="date"
             onChange={e => this.handleEvent(e)}
           />
           <br />
+          <br />
+          <br />
           <Button type="submit" variant="contained" color="primary" className="Knapp">
-            Register new user
+            <div class="test">Register new user</div>
           </Button>
         </form>
+        <br />
         <p>
           <h2>User information</h2>
           <Paper>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Name</TableCell>
+                  <TableCell>First name</TableCell>
+                  <TableCell>Last name</TableCell>
                   <TableCell>Balance</TableCell>
                   <TableCell>Address</TableCell>
                   <TableCell>SSN</TableCell>
@@ -254,7 +272,8 @@ class newuser extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableCell>{this.state.name}</TableCell>
+                <TableCell>{this.state.Fname}</TableCell>
+                <TableCell>{this.state.Lname}</TableCell>
                 <TableCell>{this.state.balance}</TableCell>
                 <TableCell>{this.state.address}</TableCell>
                 <TableCell>{this.state.ssn}</TableCell>
