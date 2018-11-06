@@ -14,14 +14,15 @@ class otherAmount extends React.Component {
   }
 
   handleEvent = e => {
+    // Updates the state in accordance with the math "regex"
     this.setState({ [e.target.name]: e.target.value });
   };
   handleSubmit = e => {
     e.preventDefault();
+    // Sets session stored amount to amount set by user
     sessionStorage.setItem('amount', this.state.amount);
+    // Pushes to confirmwidraw page
     this.props.history.push('/confirmwithdraw');
-
-    // get our form data out of state
   };
 
   render() {
@@ -33,10 +34,9 @@ class otherAmount extends React.Component {
           <b>Withdraw -></b> Confirm -> Take cash -> Finished? -> Take card{' '}
         </div>
         <h1> Please enter wanted amount</h1>
-        <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
+        <CssBaseline />
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
           <br />
-          {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
           <TextField
             required
             id="standard-required"
