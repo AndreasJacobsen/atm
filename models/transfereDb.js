@@ -1,15 +1,13 @@
 const connection = require('../models/loginrouters');
 
-function transfereMoney(transfere) {
+function transfereMoney(bankNumber, reciverBankNumber, transfereAmount) {
   let userAccount = [];
   connection.query(
-    "SELECT CardNumber, BankNumber, Balance FROM userCards WHERE BankNumber = '" + transfere + "'",
+    "SELECT CardNumber, BankNumber, Balance FROM userCards WHERE BankNumber = '" + bankNumber + "'",
     function(err, rows) {
       if (err) {
         throw err;
       } else {
-        console.log('rows is: ', rows);
-        console.log('rows is: ' + rows);
         setValue(rows);
       }
     }
@@ -17,6 +15,7 @@ function transfereMoney(transfere) {
   function setValue(value) {
     userAccount = value;
     console.log('userAccount is: ', userAccount);
+    console.log('userAccount is: ', userAccount[0].BankNumber);
   }
 }
 module.exports = transfereMoney;

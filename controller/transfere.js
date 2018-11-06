@@ -5,7 +5,9 @@ const transfereMoney = require('../models/transfereDb');
 router.post('/', function(req, result) {
   // prettier-ignore
   const bankNumber = "666"
-  transfereMoney(bankNumber);
+  const reciverBankNumber = '777';
+  const transfereAmount = '333';
+  transfereMoney(bankNumber, reciverBankNumber, transfereAmount);
 });
 
 module.exports = router;
