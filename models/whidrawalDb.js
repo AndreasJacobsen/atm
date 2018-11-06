@@ -5,11 +5,24 @@ function takeMoney(amount, cardnumber) {
   console.log("db cardnumber is".cardnumber)
   console.log('db amount is', amount);
   connection.query(
-    "UPDATE userCards SET balance = balance - '" +
+    "UPDATE users.usercards SET Balance = CASE WHEN type = 'visa' AND balance>'" +
       amount +
-      "' WHERE CardNumber = '" +
+      "' THEN Balance - '" +
+      amount +
+      "' ELSE CASE WHEN type='mastercard' AND (balance - '" +
+      amount +
+      "')>'-10000' THEN Balance - '" +
+      amount +
+      "' ELSE 'NEIN CASH' END END WHERE CardNumber = '" +
       cardnumber +
-      "'"
+      "';",
+    function(err) {
+      if (err) {
+        console.log('You too poor');
+      } else {
+        console.log('You got the cash');
+      }
+    }
   );
 }
 
