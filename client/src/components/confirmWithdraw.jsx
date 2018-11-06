@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from 'axios';
 import { Redirect } from 'react-router';
+import { withRouter } from 'react-router';
 
 class confirmWithdraw extends React.Component {
   constructor() {
@@ -29,7 +30,7 @@ class confirmWithdraw extends React.Component {
         amount,
         serverCardNumber
       }
-    }).then(() => this.setState({ redirect: true }));
+    }).then(() => this.props.history.push('/moneyform'));
   };
 
   render() {

@@ -59,7 +59,7 @@ class logIn extends React.Component {
     const { cardnumber, pin, status } = this.state;
     return (
       <React.Fragment>
-        {status ? <Redirect to="/moneyform" /> : null}
+        {status ? <Redirect to="/selectaction" /> : null}
         {console.log('server says:')}
         {console.log(status)}
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
