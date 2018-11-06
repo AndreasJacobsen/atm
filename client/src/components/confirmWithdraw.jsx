@@ -2,12 +2,14 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 
 class confirmWithdraw extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      redirect: false
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,12 +29,17 @@ class confirmWithdraw extends React.Component {
         amount,
         serverCardNumber
       }
-    });
+    }).then(() => this.setState({ redirect: true }));
   };
 
   render() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to="/moneyform" />;
+    }
     return (
       <React.Fragment>
+        {redirect ? <Redirect to="/moneyform" /> : null}
         <div>
           Select action -> Withdraw -> <b>Confirm -></b> Take cash -> Finished? -> Take card{' '}
         </div>
