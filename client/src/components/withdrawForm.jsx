@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 class WithdrawalForm extends React.Component {
   constructor() {
@@ -21,7 +22,7 @@ class WithdrawalForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // get our form data out of state
+    this.props.history.push('/confirmwithdraw');
   };
 
   render() {
