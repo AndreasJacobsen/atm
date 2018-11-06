@@ -24,7 +24,7 @@ class MoneyForm extends React.Component {
     // get our form data out of state
     const { transferAmount, transferNumber } = this.state;
 
-    axios.post('/api/formdata', { transferAmount, transferNumber }).then(result => {
+    axios.post('/api/transfere', { transferAmount, transferNumber }).then(result => {
       console.log(this.transferAmount);
     });
   };
@@ -77,11 +77,7 @@ class MoneyForm extends React.Component {
           />
           <br />
           <br />
-          <Button type="submit" variant="contained" color="primary" className="Knapp">
-            <Link to="/confirmtransfer" className="test">
-              Transfer
-            </Link>
-          </Button>
+          <Button type="submit" variant="contained" color="primary" className="Knapp" />
         </form>
         <p className="marginTop">
           Transfer amount: {this.state.transferAmount} <br />
