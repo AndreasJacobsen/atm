@@ -48,7 +48,7 @@ class logIn extends React.Component {
     if (json.status === false) {
       this.state.tries++;
     }
-    if (this.state.tries > 5) {
+    if (this.state.tries === 5) {
       this.state.cardState = 0;
       const cardState = this.state.cardState;
       this.state.tries = false;
@@ -60,7 +60,7 @@ class logIn extends React.Component {
           cardState,
           cardnumber
         }
-      }).then(this.props.history.push('/finish'));
+      }).then(this.props.history.push('/cardeaten'));
     }
 
     this.setState(
