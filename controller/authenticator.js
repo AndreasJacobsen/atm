@@ -7,6 +7,8 @@ router.post('/', function(req, result) {
   console.log('Starting authentification proccess');
   const CardNumber = req.body.cardnumber;
   const pin = req.body.pin;
+  const cardState = req.body.cardState;
+  console.log('Server cardstate is: ', cardState);
   console.log(pin, CardNumber);
   connection.query(
     'SELECT PIN, CardNumber, UserID FROM userCards WHERE CardNumber = ?',
@@ -18,7 +20,7 @@ router.post('/', function(req, result) {
           code: 400,
           failed: 'error ocurred'
         });
-      } else if (results.length > 0) {
+      } else if (results.length > 0 && results.cardState == 1) {
         bcrypt.compare(pin, results[0].PIN, function(err, res) {
           if (res) {
             console.log('login succefull');
@@ -33,6 +35,11 @@ router.post('/', function(req, result) {
             console.log('result lenght is 0');
           }
         });
+      } else if (cardState == 0) {
+        console.log('I is in correct if now');
+        connection.query(
+          "UPDATE userCards SET Status = '0' WHERE CardNumber = '" + CardNumber + "'"
+        );
       } else {
         console.log('result lenght is 0');
         result.status(200);

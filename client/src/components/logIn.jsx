@@ -16,7 +16,8 @@ class logIn extends React.Component {
         message: '',
         status: ''
       },
-      tries: 2
+      tries: 2,
+      cardState: 1
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,8 +29,8 @@ class logIn extends React.Component {
     e.preventDefault();
     console.log('number of tries is', this.state.tries);
     // get our form data out of state
-    const { cardnumber, pin } = this.state;
-    const data = { cardnumber, pin };
+    const { cardnumber, pin, cardState } = this.state;
+    const data = { cardnumber, pin, cardState };
     const url = '/api/login';
     const serverResponse = await fetch(url, {
       method: 'POST',
@@ -48,14 +49,16 @@ class logIn extends React.Component {
       this.state.tries++;
     }
     if (this.state.tries > 5) {
-      const cardState = 0;
+      this.state.cardState = 0;
+      const cardState = this.state.cardState;
       this.state.tries = false;
       console.log('3 failed attempts');
       axios({
         method: 'post',
-        url: '/api/transfere',
+        url: '/api/login',
         data: {
-          cardState
+          cardState,
+          cardnumber
         }
       }).then(this.props.history.push('/finish'));
     }
@@ -77,7 +80,7 @@ class logIn extends React.Component {
   };
 
   render() {
-    const { cardnumber, pin, status, tries } = this.state;
+    const { cardnumber, pin, status, tries, cardState } = this.state;
     return (
       <React.Fragment>
         {tries ? !<Redirect to="/selectaction" /> : null}
