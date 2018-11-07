@@ -10,11 +10,28 @@ class selectAction extends React.Component {
     super();
     this.state = {
       loggedIn: true,
-      balance: ''
+      balance: '',
+      error: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  fetchUsers() {
+    // Where we're fetching data from
+    fetch(`http://localhost:5000/api/showBalance`)
+      // We get the API response and receive data in JSON format...
+      .then(response => response.json())
+      // ...then we update the users state
+      .then(data =>
+        this.setState({
+          balance: data
+        })
+      )
+      // Catch any errors we hit and update the app
+      .catch(error => this.setState({ error }));
+  }
   componentDidMount() {
+    this.fetchUsers();
+
     const getBalance = async () => {
       try {
         return await axios.post('http://localhost:5000/api/showBalance');
@@ -47,12 +64,12 @@ class selectAction extends React.Component {
   };
 
   render() {
-    const { loggedIn } = this.state;
+    const { loggedIn, balance } = this.state;
     return (
       <React.Fragment>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <h1> Choose an action</h1>
-        <h2>Your balance is: </h2>
+        <h2>Your balance is: {balance} </h2>
         <br />
         <div className="container">
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}

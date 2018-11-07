@@ -6,7 +6,7 @@ router.post('/', function(req, res) {
   const cardNumber = req.body.cardnumber;
   const result = showBalance('666');
   console.log('result is: ', result);
-  res.send({
+  res.json({
     code: 200,
     balance: result
   });
