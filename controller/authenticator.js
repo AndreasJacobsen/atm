@@ -20,7 +20,7 @@ router.post('/', function(req, result) {
           code: 400,
           failed: 'error ocurred'
         });
-      } else if (results.length > 0 && results.cardState == 1) {
+      } else if (results.length > 0 && cardState == 1) {
         bcrypt.compare(pin, results[0].PIN, function(err, res) {
           if (res) {
             console.log('login succefull');
