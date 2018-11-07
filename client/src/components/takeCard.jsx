@@ -19,6 +19,7 @@ class takeCard extends React.Component {
     e.preventDefault();
     // get our form data out of state
     axios.post('/api/formdata', {}).then(result => {});
+    sessionStorage.removeItem('cardnumber');
   };
 
   render() {

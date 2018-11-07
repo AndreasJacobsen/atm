@@ -9,9 +9,25 @@ class selectAction extends React.Component {
   constructor() {
     super();
     this.state = {
-      loggedIn: true
+      loggedIn: true,
+      balance: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  componentDidMount() {
+    const getBalance = async () => {
+      try {
+        return await axios.post('http://localhost:5000/api/showBalance');
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    const showBalance = async () => {
+      const balance = await getBalance();
+      console.log(balance);
+      console.log('I am in async!');
+    };
+    showBalance();
   }
   onClick = () => {
     this.setState({
@@ -36,6 +52,7 @@ class selectAction extends React.Component {
       <React.Fragment>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <h1> Choose an action</h1>
+        <h2>Your balance is: </h2>
         <br />
         <div className="container">
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}

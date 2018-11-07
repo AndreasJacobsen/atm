@@ -6,6 +6,7 @@ const newUser = require('./controller/newUserRouter.js');
 const authenticator = require('./controller/authenticator');
 const whidrawal = require('./controller/whidrawal');
 const transfere = require('./controller/transfere');
+const showBalance = require('./controller/balance');
 
 // Dataparser, parsing data from react front end to Json
 app.use(
@@ -29,5 +30,6 @@ app.use('/api/newUser', newUser);
 app.use('/api/login', authenticator);
 app.use('/api/whidrawal', whidrawal);
 app.use('/api/transfere', transfere);
+app.use('/api/showBalance', showBalance);
 // Defines server port number, set to 5000 for back end and 3000 for front end.
 app.listen(port, () => console.log(`Back end is listening on port ${port}`));

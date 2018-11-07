@@ -19,6 +19,7 @@ class takeCardTrasnfer extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     // get our form data out of state
+    sessionStorage.removeItem('cardnumber');
 
     axios.post('/api/formdata', {}).then(result => {});
   };
