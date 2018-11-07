@@ -15,8 +15,6 @@ function transfereMoney(bankNumber, reciverBankNumber, transfereAmount) {
   function setValue(value, res) {
     userAccount = value;
     const ownBalance = userAccount[0].Balance;
-    console.log('userAccount is: ', userAccount);
-    console.log('userAccount is: ', userAccount[0].BankNumber);
     if (ownBalance > transfereAmount) {
       console.log('you have nuff moneiz');
       connection.query(

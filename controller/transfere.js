@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const transfereMoney = require('../models/transfereDb');
 
-router.post('/', function(req) {
+router.post('/', function(req, send) {
   // prettier-ignore
   const bankNumber = req.body.bankNumber
   const reciverBankNumber = req.body.transfereNumber;
