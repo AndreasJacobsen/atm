@@ -13,6 +13,7 @@ import takeCash from './takeCash';
 import confirmTransfer from './confirmTransfer';
 import finish from './finish';
 import takeCardTrasnfer from './takeCardTransfer';
+import cardEaten from './cardEaten';
 
 const BasicExample = () => (
   <Router>
@@ -102,6 +103,7 @@ const BasicExample = () => (
       <Route path="/confirmtransfer" component={confirmTransfer} />
       <Route path="/finish" component={finish} />
       <Route path="/takecardtransfer" component={takeCardTrasnfer} />
+      <Route path="/cardeaten" component={cardEaten} />
     </div>
   </Router>
 );
