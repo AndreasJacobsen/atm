@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import { Route, Redirect } from 'react-router';
+import axios from 'axios';
 
 class logIn extends React.Component {
   constructor() {
@@ -14,7 +15,8 @@ class logIn extends React.Component {
       servercardnumber: {
         message: '',
         status: ''
-      }
+      },
+      tries: 2
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,6 +26,7 @@ class logIn extends React.Component {
   };
   handleSubmit = async e => {
     e.preventDefault();
+    console.log('number of tries is', this.state.tries);
     // get our form data out of state
     const { cardnumber, pin } = this.state;
     const data = { cardnumber, pin };
@@ -40,10 +43,28 @@ class logIn extends React.Component {
     });
     const json = await serverResponse.json();
     console.log(json);
+    console.log('json status is: ', json.status);
+    if (json.status === false) {
+      this.state.tries++;
+    }
+    if (this.state.tries > 5) {
+      const cardState = 0;
+      this.state.tries = false;
+      console.log('3 failed attempts');
+      axios({
+        method: 'post',
+        url: '/api/transfere',
+        data: {
+          cardState
+        }
+      }).then(this.props.history.push('/finish'));
+    }
 
     this.setState(
       prevState => {
         sessionStorage.setItem('cardnumber', json.message);
+
+        console.log('json status is: ', json.status);
         return {
           servercardnumber: json.message,
           status: json.status
@@ -56,9 +77,10 @@ class logIn extends React.Component {
   };
 
   render() {
-    const { cardnumber, pin, status } = this.state;
+    const { cardnumber, pin, status, tries } = this.state;
     return (
       <React.Fragment>
+        {tries ? !<Redirect to="/selectaction" /> : null}
         {status ? <Redirect to="/selectaction" /> : null}
         {console.log('server says:')}
         {console.log(status)}
