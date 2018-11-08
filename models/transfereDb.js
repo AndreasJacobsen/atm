@@ -1,9 +1,8 @@
 const connection = require('../models/loginrouters');
 
-function transfereMoney(bankNumber, reciverBankNumber, transfereAmount) {
-  let userAccount = [];
+function transfereMoney(cardnumber, transfereNumber, transfereAmount) {
   connection.query(
-    "SELECT CardNumber, BankNumber, Balance FROM userCards WHERE BankNumber = '" + bankNumber + "'",
+    "SELECT CardNumber, Balance FROM userCards WHERE cardNumber = '" + cardnumber + "'",
     function(err, rows) {
       if (err) {
         throw err;
@@ -14,26 +13,33 @@ function transfereMoney(bankNumber, reciverBankNumber, transfereAmount) {
   );
   function setValue(value, res) {
     userAccount = value;
-    const ownBalance = userAccount[0].Balance;
-    if (ownBalance > transfereAmount) {
-      console.log('you have nuff moneiz');
-      connection.query(
-        "UPDATE userCards SET balance = balance - '" +
-          transfereAmount +
-          "' WHERE BankNumber = '" +
-          bankNumber +
-          "'"
-      );
-      connection.query(
-        "UPDATE userCards SET balance = balance + '" +
-          transfereAmount +
-          "' WHERE BankNumber = '" +
-          reciverBankNumber +
-          "'"
-      );
-    } else {
-      console.log("you don't have nuff moneiz");
-    }
+    connection.query(
+      "UPDATE users.userCards SET Balance = CASE when type = 'visa' AND balance > '" +
+        transfereAmount +
+        "' THEN balance - '" +
+        transfereAmount +
+        "' ELSE CASE WHEN type='mastercard' AND (balance - '" +
+        transfereAmount +
+        "') >'-10000' THEN Balance - '" +
+        transfereAmount +
+        "' ELSE 'NEIN CASH' END END WHERE CardNumber ='" +
+        cardnumber +
+        "';",
+      function(err) {
+        if (err) {
+          console.log('You too poor');
+        } else {
+          connection.query(
+            "UPDATE userCards SET balance = balance + '" +
+              transfereAmount +
+              "' WHERE cardNumber = '" +
+              transfereNumber +
+              "'"
+          );
+          console.log('You transfered the moneys');
+        }
+      }
+    );
   }
 }
 module.exports = transfereMoney;
