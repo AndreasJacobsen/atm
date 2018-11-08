@@ -17,7 +17,8 @@ class logIn extends React.Component {
         status: ''
       },
       tries: 2,
-      cardState: 1
+      cardState: 1,
+      error: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -47,6 +48,8 @@ class logIn extends React.Component {
     console.log('json status is: ', json.status);
     if (json.status === false) {
       this.state.tries++;
+      this.state.error = json.message;
+      console.log('message is:', this.state.servercardnumber.message);
     }
     if (this.state.tries === 5) {
       this.state.cardState = 0;
@@ -80,13 +83,11 @@ class logIn extends React.Component {
   };
 
   render() {
-    const { cardnumber, pin, status, tries, cardState } = this.state;
+    const { cardnumber, pin, status, tries, cardState, error } = this.state;
     return (
       <React.Fragment>
         {tries ? !<Redirect to="/selectaction" /> : null}
         {status ? <Redirect to="/selectaction" /> : null}
-        {console.log('server says:')}
-        {console.log(status)}
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <h1> Log in</h1>
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
@@ -130,10 +131,7 @@ class logIn extends React.Component {
             <div className="test">Log in</div>
           </Button>
         </form>
-        <p>
-          Cardnumber: {this.state.cardnumber} <br />
-          pin-code: {this.state.pin} <br />
-        </p>
+        <h2 className="error">{error}</h2>
       </React.Fragment>
     );
   }

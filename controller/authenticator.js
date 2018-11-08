@@ -30,20 +30,19 @@ router.post('/', function(req, result) {
             console.log('something went wrong/email and password does not match');
             console.log(err);
             result.status(200);
-            result.json({ message: false, status: false });
+            result.json({ message: 'Wrong PIN', status: false });
           } else {
             console.log('result lenght is 0');
           }
         });
       } else if (cardState == 0) {
-        console.log('I is in correct if now');
         connection.query(
           "UPDATE userCards SET Status = '0' WHERE CardNumber = '" + CardNumber + "'"
         );
       } else {
         console.log('result lenght is 0');
         result.status(200);
-        result.json({ message: false, status: false });
+        result.json({ message: 'Could not find any matching cardnumbers', status: false });
       }
     }
   );
