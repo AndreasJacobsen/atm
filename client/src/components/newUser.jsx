@@ -115,7 +115,7 @@ class newuser extends React.Component {
             margin="normal"
             defaultValue={Lname}
             type="text"
-            name="Fname"
+            name="Lname"
             onChange={e => this.handleEvent(e)}
           />
           <br />

@@ -18,7 +18,7 @@ import cardEaten from './cardEaten';
 const BasicExample = () => (
   <Router>
     <div>
-      <ul>
+      {/* <ul>
         <b>Case 1: Withdraw</b>
         <li style={{ listStyle: 'none' }}>
           <Link style={{ textDecoration: 'none', color: '' }} to="/">
@@ -87,7 +87,7 @@ const BasicExample = () => (
           </Link>
         </li>
       </ul>
-
+      */}
       <hr />
 
       <Route exact path="/" component={logIn} />

@@ -35,12 +35,13 @@ class takeCardTrasnfer extends React.Component {
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
-
-          <Button type="submit" variant="contained" color="primary" className="Knapp">
-            <Link to="/finish" className="test">
-              Confirm
-            </Link>
-          </Button>
+          <div className="marginTop container">
+            <Button type="submit" variant="contained" color="primary" className="floatRight">
+              <Link to="/finish" className="test">
+                Confirm
+              </Link>
+            </Button>
+          </div>
           <br />
         </form>
       </React.Fragment>

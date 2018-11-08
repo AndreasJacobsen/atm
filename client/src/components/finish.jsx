@@ -35,7 +35,7 @@ class finish extends React.Component {
         <form onSubmit={this.handleSubmit} method="POST" action="/api/formdata">
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
-          <div className="container">
+          <div className="container marginTop">
             <Button type="submit" variant="contained" color="secondary" className="floatLeft">
               <Link to="/takecard" className="test">
                 Log out

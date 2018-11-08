@@ -48,9 +48,9 @@ class confirmTransfer extends React.Component {
           </h2>
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
-          <div className="container">
+          <div className="container marginTop">
             <Button type="submit" variant="contained" color="primary" className="floatRight">
-              Confirm
+              <div className="test">Confirm</div>
             </Button>
             <Button type="submit" variant="contained" color="secondary" className="floatLeft">
               <Link to="/selectaction" className="test">
