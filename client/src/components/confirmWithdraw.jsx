@@ -39,18 +39,18 @@ class confirmWithdraw extends React.Component {
         <div>
           Select action -> Withdraw -> <b>Confirm -></b> Take cash -> Finished? -> Take card{' '}
         </div>
-        <div>{sessionStorage.getItem('amount')}</div>
+        {/* <div>{sessionStorage.getItem('amount')}</div> */}
         <h1>Please confirm the withdraw of {sessionStorage.getItem('amount')} NOK </h1>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <form onSubmit={this.handleSubmit}>
           <br />
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
-          <div className="container">
+          <div className="container marginTop">
             <Button type="submit" variant="contained" color="primary" className="floatRight">
-              Confirm
+              <div className="test">Confirm</div>
             </Button>
             <Button type="submit" variant="contained" color="secondary" className="floatLeft">
-              Cancel
+              <div className="test">Cancel</div>
             </Button>
           </div>
         </form>

@@ -75,13 +75,22 @@ class MoneyForm extends React.Component {
           />
           <br />
           <br />
-          <Button type="submit" variant="contained" color="primary" className="Knapp" />
+          <div className="marginTop container">
+            <Button type="submit" variant="contained" color="primary" className="floatRight">
+              <div class="test">Transfer</div>
+            </Button>
+            <Button variant="contained" color="secondary" className="floatLeft">
+              <Link class="test" to="/selectaction">
+                Main menu
+              </Link>
+            </Button>
+          </div>
         </form>
-        <p className="marginTop">
+        {/*  <p className="marginTop">
           Transfer amount: {this.state.transferAmount} <br />
           Reciver accountnumber: {this.state.transferNumber}
           Cardnumber: {sessionStorage.getItem('cardnumber')}
-        </p>
+          </p>*/}
       </React.Fragment>
     );
   }

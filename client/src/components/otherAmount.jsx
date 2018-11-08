@@ -40,7 +40,7 @@ class otherAmount extends React.Component {
           <TextField
             required
             id="standard-required"
-            label="amount to withdraw"
+            label="Amount to withdraw"
             className="tekstfelt"
             margin="normal"
             defaultValue={amount}
@@ -55,20 +55,20 @@ class otherAmount extends React.Component {
           />
           <br />
           <br />
-          <div className="container">
+          <div className="container marginTop">
             <Button type="submit" variant="contained" color="secondary" className="floatLeft">
               <Link to="/selectaction" className="test">
-                Main menu
+                <div class="test">Main menu</div>
               </Link>
             </Button>
             <Button type="submit" variant="contained" color="primary" className="floatRight">
-              Withdraw
+              <div class="test">Withdraw</div>
             </Button>
           </div>
         </form>
-        <p className="marginTop">
+        {/*<p className="marginTop">
           Amount: {this.state.amount} <br />
-        </p>
+          </p> */}
       </React.Fragment>
     );
   }

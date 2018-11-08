@@ -120,11 +120,18 @@ class WithdrawalForm extends React.Component {
           <br />
           <br />
           <div className="marginTop">
-            <Button variant="contained" color="secondary" className="Knapp">
-              <Link to="/otheramount" className="test">
-                Other amount
-              </Link>
-            </Button>
+            <div className="container">
+              <Button variant="contained" color="primary" className="floatRight">
+                <Link to="/otheramount" className="test">
+                  Other amount
+                </Link>
+              </Button>
+              <Button variant="contained" color="secondary" className="floatLeft">
+                <Link to="/otheramount" className="test">
+                  Back to menu
+                </Link>
+              </Button>
+            </div>
           </div>
           <br />
           <br />

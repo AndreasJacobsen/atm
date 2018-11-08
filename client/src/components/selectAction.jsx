@@ -69,7 +69,6 @@ class selectAction extends React.Component {
       <React.Fragment>
         <CssBaseline /> {/*https://material-ui.com/style/css-baseline */}
         <h1> Choose an action</h1>
-        <h2>Your balance is: {balance} </h2>
         <br />
         <div className="container">
           {/* Bytt ut med CSS block elementer eller noe slikt, bytt name på form fields til å hentes via JS  */}
@@ -86,8 +85,8 @@ class selectAction extends React.Component {
         </div>
         <br />
         <br />
-        <div className="marginTop">
-          <Button variant="contained" color="secondary" className="">
+        <div className="marginTop container">
+          <Button variant="contained" color="secondary" className="floatLeft">
             <Link to="/" className="test" defaultValue={loggedIn} onClick={this.onClick}>
               Log out
             </Link>
