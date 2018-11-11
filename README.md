@@ -14,6 +14,13 @@ This project was done as part of a school assignment, it is in not secure or rob
 
 - yarn
 - NodeJS
+- MySQL or MariaDB database with at least one existing user
+  There needs to be a database named `users`
+  Example SQL query to insert the one required user:
+
+```SQL
+INSERT INTO atmUsers (UserID, CreatedAt, Address, SSN, fName, lName) VALUES (0,"1991-03-25 10:11:12","Pilestredet 52", 110391387, "Anna", "Sethnes");
+```
 
 #### Back end installation
 
@@ -33,3 +40,7 @@ Client and back end can run independantly and will both function on their own, h
 
 If getting `"Node.JS: Getting error : [nodemon] Internal watch failed: watch ENOSPC"` in Linux (possibly MacOS but not tested) run
 `echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p` from the terminal.
+
+```
+
+```
