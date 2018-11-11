@@ -4,6 +4,8 @@ This system is build using Express.js as back end and React.js as front end.
 
 All interaction between back end and front end is done via API calls.
 
+[Link to this readme.md file on github](https://github.com/AndreasJacobsen/atm)
+
 ### Notice
 
 This project was done as part of a school assignment, it is in not secure or robust enough to use in _any_ production enviourment, please only use this for learning.
