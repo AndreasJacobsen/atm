@@ -42,8 +42,4 @@ Client and back end can run independantly and will both function on their own, h
 ## Notes
 
 If getting `"Node.JS: Getting error : [nodemon] Internal watch failed: watch ENOSPC"` in Linux (possibly MacOS but not tested) run
-`echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p` from the terminal.
-
-```
-
-```
+`echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p` from the terminal. See this [StackOverflow post](https://stackoverflow.com/questions/34662574/node-js-getting-error-nodemon-internal-watch-failed-watch-enospc) for more information.
