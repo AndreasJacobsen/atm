@@ -16,7 +16,10 @@ This project was done as part of a school assignment, it is in not secure or rob
 - NodeJS
 - MySQL or MariaDB database with at least one existing user
   There needs to be a database named `users`
-  Example SQL query to insert the one required user:
+
+To generate the tables run the [userschema.sql](./config/userschema.sql)
+from the config folder in the users database
+Example SQL query to insert the one required user:
 
 ```SQL
 INSERT INTO atmUsers (UserID, CreatedAt, Address, SSN, fName, lName) VALUES (0,"1991-03-25 10:11:12","Pilestredet 52", 110391387, "Anna", "Sethnes");
