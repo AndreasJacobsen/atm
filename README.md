@@ -39,6 +39,10 @@ Client and back end can run independantly and will both function on their own, h
 
 `yarn dev`, see [package.json](./package.json) in project root folder for more scripts.
 
+## Security
+
+All registered PINs for usercard are encrypted with a hash and 15 salt rounds. Data is _not_ encrypted in transit by default in this application. The application works with HTTPS, some data is stored as normal session variables in cleartext. Implementation of further security using JWS and Passport.js had to be halted due to project timeline limitation. As previously stated this system is not secure or robust enought for _any_ production system
+
 ## Notes
 
 If getting `"Node.JS: Getting error : [nodemon] Internal watch failed: watch ENOSPC"` in Linux (possibly MacOS but not tested) run
